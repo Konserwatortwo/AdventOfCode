@@ -2,12 +2,24 @@ package AdventOfCode;
 
 import AdventOfCode.Day1.Task1A;
 import AdventOfCode.Day1.Task1B;
+import AdventOfCode.Day10.Task10A;
+import AdventOfCode.Day10.Task10B;
 import AdventOfCode.Day2.Task2A;
 import AdventOfCode.Day2.Task2B;
 import AdventOfCode.Day3.Task3A;
 import AdventOfCode.Day3.Task3B;
 import AdventOfCode.Day4.Task4A;
 import AdventOfCode.Day4.Task4B;
+import AdventOfCode.Day5.Task5A;
+import AdventOfCode.Day5.Task5B;
+import AdventOfCode.Day6.Task6A;
+import AdventOfCode.Day6.Task6B;
+import AdventOfCode.Day7.Task7A;
+import AdventOfCode.Day7.Task7B;
+import AdventOfCode.Day8.Task8A;
+import AdventOfCode.Day8.Task8B;
+import AdventOfCode.Day9.Task9A;
+import AdventOfCode.Day9.Task9B;
 
 public enum AdventTasks {
 
@@ -23,20 +35,20 @@ public enum AdventTasks {
     TASK_4A("4A", new Task4A()),
     TASK_4B("4B", new Task4B()),
 
-    TASK_5A("5A", null),
-    TASK_5B("5B", null),
-    TASK_6A("6A", null),
-    TASK_6B("6B", null),
+    TASK_5A("5A", new Task5A()),
+    TASK_5B("5B", new Task5B()),
+    TASK_6A("6A", new Task6A()),
+    TASK_6B("6B", new Task6B()),
 
-    TASK_7A("7A", null),
-    TASK_7B("7B", null),
-    TASK_8A("8A", null),
-    TASK_8B("8B", null),
+    TASK_7A("7A", new Task7A()),
+    TASK_7B("7B", new Task7B()),
+    TASK_8A("8A", new Task8A()),
+    TASK_8B("8B", new Task8B()),
 
-    TASK_9A("9A", null),
-    TASK_9B("9B", null),
-    TASK_10A("10A", null),
-    TASK_10B("10B", null),
+    TASK_9A("9A", new Task9A()),
+    TASK_9B("9B", new Task9B()),
+    TASK_10A("10A", new Task10A()),
+    TASK_10B("10B", new Task10B()),
 
     TASK_11A("11A", null),
     TASK_11B("11B", null),
