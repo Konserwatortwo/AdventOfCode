@@ -1,56 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="01253f5c-1898-4419-89c3-514fc0a337bd" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/AdventOfCode/Day10/Task10A.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/AdventOfCode/Day10/Task10B.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/AdventOfCode/Day5/Task5A.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/AdventOfCode/Day5/Task5B.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/AdventOfCode/Day6/Task6A.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/AdventOfCode/Day6/Task6B.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/AdventOfCode/Day7/Task7A.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/AdventOfCode/Day7/Task7B.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/AdventOfCode/Day8/Task8A.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/AdventOfCode/Day8/Task8B.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/AdventOfCode/Day9/Task9A.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/AdventOfCode/Day9/Task9B.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/runConfigurations.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/AdventOfCode/Day5/OpcodeComputer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2021/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2021/.idea/.name" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2021/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2021/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2021/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2021/.idea/runConfigurations.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2021/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2021/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2021/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2021/src/main/java/AoC2021/AdventTask.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2021/src/main/java/AoC2021/Application.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2021/src/main/java/AoC2021/Day1/Task1A.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2021/src/main/resources/INPUT/Day1/INPUT_Task1A" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../2021/src/test/java/Day1/Task1ATest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/AdventOfCode/AdventTasks.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/AdventOfCode/AdventTasks.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/input/INPUT_1A" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/input/INPUT_1A" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/input/INPUT_1B" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/input/INPUT_1B" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/input/INPUT_2A" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/input/INPUT_2A" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/input/INPUT_2B" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/input/INPUT_2B" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/input/INPUT_3A" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/input/INPUT_3A" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/input/INPUT_3B" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/input/INPUT_3B" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/input/INPUT_4A" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/input/INPUT_4A" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/input/INPUT_4B" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/input/INPUT_4B" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/output/OUTPUT_1A" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/output/OUTPUT_1A" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/output/OUTPUT_1B" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/output/OUTPUT_1B" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/output/OUTPUT_2A" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/output/OUTPUT_2A" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/output/OUTPUT_2B" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/output/OUTPUT_2B" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/output/OUTPUT_3A" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/output/OUTPUT_3A" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/output/OUTPUT_3B" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/output/OUTPUT_3B" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/output/OUTPUT_4A" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/output/OUTPUT_4A" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/output/OUTPUT_4B" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/output/OUTPUT_4B" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/input/INPUT_1A" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/input/INPUT_1A" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/input/INPUT_1B" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/input/INPUT_1B" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/input/INPUT_2A" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/input/INPUT_2A" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/input/INPUT_2B" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/input/INPUT_2B" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/input/INPUT_3A" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/input/INPUT_3A" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/input/INPUT_3B" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/input/INPUT_3B" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/input/INPUT_4A" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/input/INPUT_4A" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/input/INPUT_4B" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/input/INPUT_4B" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/output/OUTPUT_1A" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/output/OUTPUT_1A" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/output/OUTPUT_1B" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/output/OUTPUT_1B" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/output/OUTPUT_2A" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/output/OUTPUT_2A" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/output/OUTPUT_2B" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/output/OUTPUT_2B" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/output/OUTPUT_3A" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/output/OUTPUT_3A" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/output/OUTPUT_3B" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/output/OUTPUT_3B" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/output/OUTPUT_4A" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/output/OUTPUT_4A" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/META-INF/2019.kotlin_module" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/AdventOfCode/AdventTask.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/AdventOfCode/AdventTask.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/AdventOfCode/AdventTasks.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/AdventOfCode/AdventTasks.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/AdventOfCode/Application.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/AdventOfCode/Application.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/AdventOfCode/Day1/Task1A.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/AdventOfCode/Day1/Task1A.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/AdventOfCode/Day1/Task1B.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/AdventOfCode/Day1/Task1B.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/AdventOfCode/Day2/Task2A.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/AdventOfCode/Day2/Task2A.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/AdventOfCode/Day2/Task2B.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/AdventOfCode/Day2/Task2B.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/AdventOfCode/Day3/Task3A$Vector.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/AdventOfCode/Day3/Task3A$Vector.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/AdventOfCode/Day3/Task3A.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/AdventOfCode/Day3/Task3A.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/AdventOfCode/Day3/Task3B.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/AdventOfCode/Day3/Task3B.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/AdventOfCode/Day4/Task4A.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/AdventOfCode/Day4/Task4A.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/AdventOfCode/Day4/Task4B.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/AdventOfCode/Day4/Task4B.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/output/OUTPUT_4B" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/output/OUTPUT_4B" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -76,16 +63,21 @@
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
     <property name="Downloaded.Files.Path.Enabled" value="true" />
     <property name="Repository.Attach.Annotations" value="false" />
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="Repository.Attach.Sources" value="false" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="Groovy JUnit" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.Groovy JUnit" value="" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
-    <property name="last_opened_file_path" value="P:/ZadaniaRekrutacyjne/NetworkedAssets" />
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../ZadaniaRekrutacyjne/NetworkedAssets" />
+    <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.javacompiler" />
@@ -112,18 +104,6 @@
     <key name="CopyFile.RECENT_KEYS">
       <recent name="P:\AdventOfCode\2019\src\main\resources\input" />
     </key>
-  </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
   </component>
   <component name="RunManager" selected="Application.Application">
     <configuration name="Application" type="Application" factoryName="Application" nameIsGenerated="true">
@@ -232,6 +212,7 @@
       </list>
     </recent_temporary>
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -243,6 +224,21 @@
       <option name="presentableId" value="Default" />
       <updated>1575714748318</updated>
     </task>
+    <task id="LOCAL-00001" summary="[1] Return after long break">
+      <created>1583749477561</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1583749477561</updated>
+    </task>
+    <task id="LOCAL-00002" summary="[2] Return after long break">
+      <created>1583749504102</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1583749504102</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -250,13 +246,17 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="COLUMN_ORDER" />
-            </State>
+            <State />
           </value>
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="[1] Return after long break" />
+    <MESSAGE value="[2] Return after long break" />
+    <option name="LAST_COMMIT_MESSAGE" value="[2] Return after long break" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/AOC_2019$Task2ATest.ic" NAME="Task2ATest Coverage Results" MODIFIED="1576774610300" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
