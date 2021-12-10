@@ -16,16 +16,16 @@ public class Task10BTest {
     public void firstTest() {
         // Arrange
         List<String> report = new ArrayList<>();
-        report.add("0,9 -> 5,9");
-        report.add("8,0 -> 0,8");
-        report.add("9,4 -> 3,4");
-        report.add("2,2 -> 2,1");
-        report.add("7,0 -> 7,4");
-        report.add("6,4 -> 2,0");
-        report.add("0,9 -> 2,9");
-        report.add("3,4 -> 1,4");
-        report.add("0,0 -> 8,8");
-        report.add("5,5 -> 8,2");
+        report.add("[({(<(())[]>[[{[]{<()<>>");
+        report.add("[(()[<>])]({[<{<<[]>>(");
+        report.add("{([(<{}[<>[]}>{[]{[(<()>");
+        report.add("(((({<>}<{<{<>}{[]{[]{}");
+        report.add("[[<[([]))<([[{}[[()]]]");
+        report.add("[{[{({}]{}}([{[{{{}}([]");
+        report.add("{<[[]]>}<{[{[{[]{()[[[]");
+        report.add("[<(<(<(<{}))><([]([]()");
+        report.add("<{([([[(<>()){}]>(<<{{");
+        report.add("<{([{{}}[<[[[<>{}]]]>[]]");
 
         // Act
         List<String> result = mockedTask.perform(report);
@@ -33,6 +33,6 @@ public class Task10BTest {
         // Assert
         Assert.assertNotNull(result);
         Assert.assertEquals(1, result.size());
-        Assert.assertEquals("150", result.get(0));
+        Assert.assertEquals("288957", result.get(0));
     }
 }

@@ -1,17 +1,29 @@
 package AoC2021;
 
-import AoC2021.Day1.*;
-import AoC2021.Day2.*;
-import AoC2021.Day3.*;
-import AoC2021.Day4.*;
-import AoC2021.Day5.*;
-import AoC2021.Day6.*;
-import AoC2021.Day7.*;
-import AoC2021.Day8.*;
-import AoC2021.Day9.*;
-import AoC2021.Day10.*;
-import AoC2021.Day11.*;
-
+import AoC2021.Day1.Task1A;
+import AoC2021.Day1.Task1B;
+import AoC2021.Day10.Task10A;
+import AoC2021.Day10.Task10B;
+import AoC2021.Day11.Task11A;
+import AoC2021.Day11.Task11B;
+import AoC2021.Day12.Task12A;
+import AoC2021.Day12.Task12B;
+import AoC2021.Day2.Task2A;
+import AoC2021.Day2.Task2B;
+import AoC2021.Day3.Task3A;
+import AoC2021.Day3.Task3B;
+import AoC2021.Day4.Task4A;
+import AoC2021.Day4.Task4B;
+import AoC2021.Day5.Task5A;
+import AoC2021.Day5.Task5B;
+import AoC2021.Day6.Task6A;
+import AoC2021.Day6.Task6B;
+import AoC2021.Day7.Task7A;
+import AoC2021.Day7.Task7B;
+import AoC2021.Day8.Task8A;
+import AoC2021.Day8.Task8B;
+import AoC2021.Day9.Task9A;
+import AoC2021.Day9.Task9B;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -19,7 +31,7 @@ import java.util.List;
 
 public class Application {
 
-    private static AdventTask selectedTask = new Task10A();
+    private static AdventTask selectedTask = new Task11A();
 
     private static List<AdventTask> allTasks = new ArrayList<>();
 
@@ -56,6 +68,9 @@ public class Application {
 
         allTasks.add(new Task11A());
         allTasks.add(new Task11B());
+
+        allTasks.add(new Task12A());
+        allTasks.add(new Task12B());
     }
 
     public static void main(String[] args) {

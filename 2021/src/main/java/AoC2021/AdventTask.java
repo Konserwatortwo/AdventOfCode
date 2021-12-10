@@ -12,8 +12,8 @@ public abstract class AdventTask {
     private static final String INPUT_PREFIX = "INPUT";
     private static final String OUTPUT_PREFIX = "OUTPUT";
 
-    private String daySuffix;
-    private String taskSuffix;
+    private final String daySuffix;
+    private final String taskSuffix;
 
     public AdventTask(String daySuffix, String taskSuffix) {
         this.daySuffix = daySuffix;
@@ -23,11 +23,11 @@ public abstract class AdventTask {
     public abstract List<String> perform(List<String> input);
 
     public void execute() {
-        System.out.printf("Wywowałno zadanie z dnia %s o nazwie %s %n", daySuffix, taskSuffix);
+        System.out.printf("Invoked task process for %s and name %s %n", daySuffix, taskSuffix);
         List<String> input = readInput();
         List<String> output = perform(input);
         if (null == output) {
-            System.out.printf("OUTPUT ERROR: Pusty zapis zadania z dnia %s o nazwie %s %n", daySuffix, taskSuffix);
+            System.out.printf("OUTPUT WARNING: Empty task output for %s and name %s %n", daySuffix, taskSuffix);
             output = new ArrayList<>();
             output.add("null");
         }
@@ -43,7 +43,7 @@ public abstract class AdventTask {
                 line = bufferedReader.readLine();
             }
         } catch (Exception exp) {
-            System.out.printf("INPUT ERROR: Błąd przy wczytywaniu zadania z dnia %s o nazwie %s %n", daySuffix, taskSuffix);
+            System.out.printf("INPUT ERROR: Error during reading task from input file for %s and name %s %n", daySuffix, taskSuffix);
             System.out.println(exp);
         }
         return input;
@@ -55,7 +55,7 @@ public abstract class AdventTask {
                 bufferedWriter.append(line);
             }
         } catch (Exception exp) {
-            System.out.printf("OUTPUT ERROR: Błąd przy zapisywaniu zadania z dnia %s o nazwie %s %n", daySuffix, taskSuffix);
+            System.out.printf("OUTPUT ERROR: Error during writing task to output file for %s and name %s %n", daySuffix, taskSuffix);
             System.out.println(exp);
         }
     }

@@ -1,16 +1,16 @@
-package Day11;
+package Day12;
 
 import AoC2021.AdventTask;
-import AoC2021.Day11.Task11A;
+import AoC2021.Day12.Task12A;
 import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Task11ATest {
+public class Task12ATest {
 
-    private final AdventTask mockedTask = new Task11A();
+    private final AdventTask mockedTask = new Task12A();
 
     @Test
     public void firstTest() {
