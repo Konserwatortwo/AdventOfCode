@@ -16,16 +16,16 @@ public class Task11ATest {
     public void firstTest() {
         // Arrange
         List<String> report = new ArrayList<>();
-        report.add("0,9 -> 5,9");
-        report.add("8,0 -> 0,8");
-        report.add("9,4 -> 3,4");
-        report.add("2,2 -> 2,1");
-        report.add("7,0 -> 7,4");
-        report.add("6,4 -> 2,0");
-        report.add("0,9 -> 2,9");
-        report.add("3,4 -> 1,4");
-        report.add("0,0 -> 8,8");
-        report.add("5,5 -> 8,2");
+        report.add("5483143223");
+        report.add("2745854711");
+        report.add("5264556173");
+        report.add("6141336146");
+        report.add("6357385478");
+        report.add("4167524645");
+        report.add("2176841721");
+        report.add("6882881134");
+        report.add("4846848554");
+        report.add("5283751526");
 
         // Act
         List<String> result = mockedTask.perform(report);
@@ -33,6 +33,6 @@ public class Task11ATest {
         // Assert
         Assert.assertNotNull(result);
         Assert.assertEquals(1, result.size());
-        Assert.assertEquals("150", result.get(0));
+        Assert.assertEquals("1656", result.get(0));
     }
 }

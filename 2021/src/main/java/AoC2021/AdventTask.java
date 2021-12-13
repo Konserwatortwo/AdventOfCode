@@ -52,7 +52,7 @@ public abstract class AdventTask {
     private void saveOutput(List<String> output) {
         try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(retrievePathToResource(OUTPUT_PREFIX)))) {
             for (String line : output) {
-                bufferedWriter.append(line);
+                bufferedWriter.append(line).append("\n");
             }
         } catch (Exception exp) {
             System.out.printf("OUTPUT ERROR: Error during writing task to output file for %s and name %s %n", daySuffix, taskSuffix);

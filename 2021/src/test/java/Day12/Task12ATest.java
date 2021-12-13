@@ -16,16 +16,13 @@ public class Task12ATest {
     public void firstTest() {
         // Arrange
         List<String> report = new ArrayList<>();
-        report.add("0,9 -> 5,9");
-        report.add("8,0 -> 0,8");
-        report.add("9,4 -> 3,4");
-        report.add("2,2 -> 2,1");
-        report.add("7,0 -> 7,4");
-        report.add("6,4 -> 2,0");
-        report.add("0,9 -> 2,9");
-        report.add("3,4 -> 1,4");
-        report.add("0,0 -> 8,8");
-        report.add("5,5 -> 8,2");
+        report.add("start-A");
+        report.add("start-b");
+        report.add("A-c");
+        report.add("A-b");
+        report.add("b-d");
+        report.add("A-end");
+        report.add("b-end");
 
         // Act
         List<String> result = mockedTask.perform(report);
@@ -33,6 +30,62 @@ public class Task12ATest {
         // Assert
         Assert.assertNotNull(result);
         Assert.assertEquals(1, result.size());
-        Assert.assertEquals("150", result.get(0));
+        Assert.assertEquals("10", result.get(0));
+    }
+
+    @Test
+    public void secondTest() {
+        // Arrange
+        List<String> report = new ArrayList<>();
+        report.add("dc-end");
+        report.add("HN-start");
+        report.add("start-kj");
+        report.add("dc-start");
+        report.add("dc-HN");
+        report.add("LN-dc");
+        report.add("HN-end");
+        report.add("kj-sa");
+        report.add("kj-HN");
+        report.add("kj-dc");
+
+        // Act
+        List<String> result = mockedTask.perform(report);
+
+        // Assert
+        Assert.assertNotNull(result);
+        Assert.assertEquals(1, result.size());
+        Assert.assertEquals("19", result.get(0));
+    }
+
+    @Test
+    public void thirdTest() {
+        // Arrange
+        List<String> report = new ArrayList<>();
+        report.add("fs-end");
+        report.add("he-DX");
+        report.add("fs-he");
+        report.add("start-DX");
+        report.add("pj-DX");
+        report.add("end-zg");
+        report.add("zg-sl");
+        report.add("zg-pj");
+        report.add("pj-he");
+        report.add("RW-he");
+        report.add("fs-DX");
+        report.add("pj-RW");
+        report.add("zg-RW");
+        report.add("start-pj");
+        report.add("he-WI");
+        report.add("zg-he");
+        report.add("pj-fs");
+        report.add("start-RW");
+
+        // Act
+        List<String> result = mockedTask.perform(report);
+
+        // Assert
+        Assert.assertNotNull(result);
+        Assert.assertEquals(1, result.size());
+        Assert.assertEquals("226", result.get(0));
     }
 }
