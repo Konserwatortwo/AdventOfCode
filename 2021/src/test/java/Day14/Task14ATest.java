@@ -1,7 +1,5 @@
 package Day14;
 
-import AoC2021.AdventTask;
-import AoC2021.Day13.Task13A;
 import AoC2021.Day14.Task14A;
 import org.junit.Assert;
 import org.junit.Test;
@@ -11,22 +9,91 @@ import java.util.List;
 
 public class Task14ATest {
 
-    private final AdventTask mockedTask = new Task14A();
+    private final Task14A mockedTask = new Task14A();
+
+    private List<String> testedInput() {
+        List<String> report = new ArrayList<>();
+        report.add("NNCB");
+        report.add("");
+        report.add("CH -> B");
+        report.add("HH -> N");
+        report.add("CB -> H");
+        report.add("NH -> C");
+        report.add("HB -> C");
+        report.add("HC -> B");
+        report.add("HN -> C");
+        report.add("NN -> C");
+        report.add("BH -> H");
+        report.add("NC -> B");
+        report.add("NB -> B");
+        report.add("BN -> B");
+        report.add("BB -> N");
+        report.add("BC -> B");
+        report.add("CC -> N");
+        report.add("CN -> C");
+        return report;
+    }
 
     @Test
-    public void firstTest() {
+    public void oneStepTest() {
         // Arrange
-        List<String> report = new ArrayList<>();
-        report.add("0,9 -> 5,9");
-        report.add("8,0 -> 0,8");
-        report.add("9,4 -> 3,4");
-        report.add("2,2 -> 2,1");
-        report.add("7,0 -> 7,4");
-        report.add("6,4 -> 2,0");
-        report.add("0,9 -> 2,9");
-        report.add("3,4 -> 1,4");
-        report.add("0,0 -> 8,8");
-        report.add("5,5 -> 8,2");
+        List<String> report = testedInput();
+
+        // Act
+        String result = mockedTask.performTask(report, 1);
+
+        // Assert
+        Assert.assertNotNull(result);
+        Assert.assertEquals(7, result.length());
+        Assert.assertEquals("NCNBCHB", result);
+    }
+
+    @Test
+    public void twoStepsTest() {
+        // Arrange
+        List<String> report = testedInput();
+
+        // Act
+        String result = mockedTask.performTask(report, 2);
+
+        // Assert
+        Assert.assertNotNull(result);
+        Assert.assertEquals(13, result.length());
+        Assert.assertEquals("NBCCNBBBCBHCB", result);
+    }
+
+    @Test
+    public void threeStepsTest() {
+        // Arrange
+        List<String> report = testedInput();
+
+        // Act
+        String result = mockedTask.performTask(report, 3);
+
+        // Assert
+        Assert.assertNotNull(result);
+        Assert.assertEquals(25, result.length());
+        Assert.assertEquals("NBBBCNCCNBBNBNBBCHBHHBCHB", result);
+    }
+
+    @Test
+    public void fourStepsTest() {
+        // Arrange
+        List<String> report = testedInput();
+
+        // Act
+        String result = mockedTask.performTask(report, 4);
+
+        // Assert
+        Assert.assertNotNull(result);
+        Assert.assertEquals(49, result.length());
+        Assert.assertEquals("NBBNBNBBCCNBCNCCNBBNBBNBBBNBBNBBCBHCBHHNHCBBCBHCB", result);
+    }
+
+    @Test
+    public void finalTest() {
+        // Arrange
+        List<String> report = testedInput();
 
         // Act
         List<String> result = mockedTask.perform(report);
@@ -34,6 +101,8 @@ public class Task14ATest {
         // Assert
         Assert.assertNotNull(result);
         Assert.assertEquals(1, result.size());
-        Assert.assertEquals("150", result.get(0));
+        Assert.assertEquals("1588", result.get(0));
     }
+
+
 }
