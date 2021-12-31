@@ -4,6 +4,8 @@ import AoC2021.AdventTask;
 
 import java.util.List;
 
+import static AoC2021.Day18.SailfishNumberUtils.addSailfishNumbers;
+
 public class Task18A extends AdventTask {
 
     public Task18A() {
@@ -12,6 +14,10 @@ public class Task18A extends AdventTask {
 
     @Override
     public List<String> perform(List<String> input) {
-        return null;
+        SailfishNumber resultNumber = new SailfishNumber(input.get(0));
+        for (int i = 1, inputSize = input.size(); i < inputSize; i++) {
+            resultNumber = addSailfishNumbers(resultNumber, new SailfishNumber(input.get(i)));
+        }
+        return List.of(resultNumber.getMagnitude() + "");
     }
 }

@@ -24,6 +24,18 @@ import AoC2021.Day19.Task19A;
 import AoC2021.Day19.Task19B;
 import AoC2021.Day2.Task2A;
 import AoC2021.Day2.Task2B;
+import AoC2021.Day20.Task20A;
+import AoC2021.Day20.Task20B;
+import AoC2021.Day21.Task21A;
+import AoC2021.Day21.Task21B;
+import AoC2021.Day22.Task22A;
+import AoC2021.Day22.Task22B;
+import AoC2021.Day23.Task23A;
+import AoC2021.Day23.Task23B;
+import AoC2021.Day24.Task24A;
+import AoC2021.Day24.Task24B;
+import AoC2021.Day25.Task25A;
+import AoC2021.Day25.Task25B;
 import AoC2021.Day3.Task3A;
 import AoC2021.Day3.Task3B;
 import AoC2021.Day4.Task4A;
@@ -45,9 +57,9 @@ import java.util.List;
 
 public class Application {
 
-    private static AdventTask selectedTask = new Task18A();
+    private static final AdventTask selectedTask = new Task25A();
 
-    private static List<AdventTask> allTasks = new ArrayList<>();
+    private static final List<AdventTask> allTasks = new ArrayList<>();
 
     static {
         allTasks.add(new Task1A());
@@ -106,6 +118,24 @@ public class Application {
 
         allTasks.add(new Task19A());
         allTasks.add(new Task19B());
+
+        allTasks.add(new Task20A());
+        allTasks.add(new Task20B());
+
+        allTasks.add(new Task21A());
+        allTasks.add(new Task21B());
+
+        allTasks.add(new Task22A());
+        allTasks.add(new Task22B());
+
+        allTasks.add(new Task23A());
+        allTasks.add(new Task23B());
+
+        allTasks.add(new Task24A());
+        allTasks.add(new Task24B());
+
+        allTasks.add(new Task25A());
+        allTasks.add(new Task25B());
     }
 
     public static void main(String[] args) {

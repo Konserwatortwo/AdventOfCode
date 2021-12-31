@@ -1,8 +1,14 @@
 package AoC2021.Day19;
 
 import AoC2021.AdventTask;
+import AoC2021.Day19.dto.Beacon;
+import AoC2021.Day19.dto.Scanner;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
+import static AoC2021.Day19.TaskUtils.*;
 
 public class Task19A extends AdventTask {
 
@@ -12,6 +18,20 @@ public class Task19A extends AdventTask {
 
     @Override
     public List<String> perform(List<String> input) {
-        return null;
+        List<Scanner> scanners = readData(input);
+        determineScannersRelativePosition(scanners);
+        scanners.forEach(System.out::println);
+        Set<String> uniquePositions = uniqueBeaconsPositions(scanners);
+        return List.of(uniquePositions.size() +"");
+    }
+
+    private static Set<String> uniqueBeaconsPositions(List<Scanner> scanners) {
+        Set<String> uniquePositions = new HashSet<>();
+        for (Scanner scanner : scanners) {
+            for (Beacon beacon : scanner.getBeacons()) {
+                uniquePositions.add(beacon.getPosition());
+            }
+        }
+        return uniquePositions;
     }
 }
