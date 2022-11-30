@@ -12,11 +12,6 @@ public class Task25A extends AdventTask {
 
     @Override
     public List<String> perform(List<String> input) {
-        Board board = new Board(input);
-        int countSteps = 1;
-        while (board.step()) {
-            countSteps++;
-        }
-        return List.of(countSteps + "");
+        return null;
     }
 }

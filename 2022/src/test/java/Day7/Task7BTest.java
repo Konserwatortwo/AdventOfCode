@@ -5,7 +5,6 @@ import AoC2022.Day7.Task7B;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Task7BTest {
@@ -15,45 +14,39 @@ public class Task7BTest {
     @Test
     public void firstTest() {
         // Arrange
-        List<String> report = new ArrayList<>();
-        report.add("16,1,2,0,4,2,7,1,2,14");
+        List<String> report = List.of("item1", "item2", "item3");
 
         // Act
         List<String> result = mockedTask.perform(report);
 
         // Assert
         Assert.assertNotNull(result);
-        Assert.assertEquals(1, result.size());
-        Assert.assertEquals("168", result.get(0));
+        Assert.assertEquals(3, result.size());
     }
 
     @Test
     public void nextTest() {
         // Arrange
-        List<String> report = new ArrayList<>();
-        report.add("6");
+        List<String> report = List.of("item1", "item2", "item3");
 
         // Act
         List<String> result = mockedTask.perform(report);
 
         // Assert
         Assert.assertNotNull(result);
-        Assert.assertEquals(1, result.size());
-        Assert.assertEquals("0", result.get(0));
+        Assert.assertEquals(3, result.size());
     }
 
     @Test
     public void anotherTest() {
         // Arrange
-        List<String> report = new ArrayList<>();
-        report.add("0,6");
+        List<String> report = List.of("item1", "item2", "item3");
 
         // Act
         List<String> result = mockedTask.perform(report);
 
         // Assert
         Assert.assertNotNull(result);
-        Assert.assertEquals(1, result.size());
-        Assert.assertEquals("12", result.get(0));
+        Assert.assertEquals(3, result.size());
     }
 }

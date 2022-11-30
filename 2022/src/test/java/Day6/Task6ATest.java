@@ -1,12 +1,10 @@
 package Day6;
 
 import AoC2022.AdventTask;
-import AoC2022.Day2.Task2A;
 import AoC2022.Day6.Task6A;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Task6ATest {
@@ -16,15 +14,13 @@ public class Task6ATest {
     @Test
     public void firstTest() {
         // Arrange
-        List<String> report = new ArrayList<>();
-        report.add("3,4,3,1,2");
+        List<String> report = List.of("item1", "item2", "item3");
 
         // Act
         List<String> result = mockedTask.perform(report);
 
         // Assert
         Assert.assertNotNull(result);
-        Assert.assertEquals(1, result.size());
-        Assert.assertEquals("5934", result.get(0));
+        Assert.assertEquals(3, result.size());
     }
 }

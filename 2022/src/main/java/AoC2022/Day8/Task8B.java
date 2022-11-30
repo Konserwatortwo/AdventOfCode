@@ -12,10 +12,6 @@ public class Task8B extends AdventTask {
 
     @Override
     public List<String> perform(List<String> input) {
-        int count = 0;
-        for (String line : input) {
-            count += NumberDetector.processLineAsNumber(line);
-        }
-        return List.of(count + "");
+        return null;
     }
 }

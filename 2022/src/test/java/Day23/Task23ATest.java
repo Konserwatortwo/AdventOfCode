@@ -1,12 +1,10 @@
 package Day23;
 
 import AoC2022.AdventTask;
-import AoC2022.Day22.Task22A;
 import AoC2022.Day23.Task23A;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Task23ATest {
@@ -16,36 +14,26 @@ public class Task23ATest {
     @Test
     public void firstTest() {
         // Arrange
-        List<String> report = new ArrayList<>();
-        report.add("BA");
-        report.add("CD");
-        report.add("BC");
-        report.add("DA");
+        List<String> report = List.of("item1", "item2", "item3");
 
         // Act
         List<String> result = mockedTask.perform(report);
 
         // Assert
         Assert.assertNotNull(result);
-        Assert.assertEquals(1, result.size());
-        Assert.assertEquals("12521", result.get(0));
+        Assert.assertEquals(3, result.size());
     }
 
     @Test
     public void secondTest() {
         // Arrange
-        List<String> report = new ArrayList<>();
-        report.add("CD");
-        report.add("CD");
-        report.add("AB");
-        report.add("BA");
+        List<String> report = List.of("item1", "item2", "item3");
 
         // Act
         List<String> result = mockedTask.perform(report);
 
         // Assert
         Assert.assertNotNull(result);
-        Assert.assertEquals(1, result.size());
-        Assert.assertEquals("18282", result.get(0));
+        Assert.assertEquals(3, result.size());
     }
 }

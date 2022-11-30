@@ -12,16 +12,6 @@ public class Task2A extends AdventTask {
 
     @Override
     public List<String> perform(List<String> input) {
-        int x = 0;
-        int y = 0;
-        for (String line : input) {
-            String[] command = line.split(" ");
-            switch (command[0]) {
-                case "forward" -> x += Integer.parseInt(command[1]);
-                case "down" -> y += Integer.parseInt(command[1]);
-                case "up" -> y -= Integer.parseInt(command[1]);
-            }
-        }
-        return List.of(x * y + "");
+        return null;
     }
 }

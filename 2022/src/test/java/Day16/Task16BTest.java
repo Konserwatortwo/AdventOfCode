@@ -5,7 +5,6 @@ import AoC2022.Day16.Task16B;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Task16BTest {
@@ -15,120 +14,104 @@ public class Task16BTest {
     @Test
     public void firstTest() {
         // Arrange
-        List<String> report = new ArrayList<>();
-        report.add("C200B40A82");
+        List<String> report = List.of("item1", "item2", "item3");
 
         // Act
         List<String> result = mockedTask.perform(report);
 
         // Assert
         Assert.assertNotNull(result);
-        Assert.assertEquals(1, result.size());
-        Assert.assertEquals("3", result.get(0));
+        Assert.assertEquals(3, result.size());
     }
 
     @Test
     public void secondTest() {
         // Arrange
-        List<String> report = new ArrayList<>();
-        report.add("04005AC33890");
+        List<String> report = List.of("item1", "item2", "item3");
 
         // Act
         List<String> result = mockedTask.perform(report);
 
         // Assert
         Assert.assertNotNull(result);
-        Assert.assertEquals(1, result.size());
-        Assert.assertEquals("54", result.get(0));
+        Assert.assertEquals(3, result.size());
     }
 
     @Test
     public void thirdTest() {
         // Arrange
-        List<String> report = new ArrayList<>();
-        report.add("880086C3E88112");
+        List<String> report = List.of("item1", "item2", "item3");
 
         // Act
         List<String> result = mockedTask.perform(report);
 
         // Assert
         Assert.assertNotNull(result);
-        Assert.assertEquals(1, result.size());
-        Assert.assertEquals("7", result.get(0));
+        Assert.assertEquals(3, result.size());
     }
 
     @Test
     public void fourthTest() {
         // Arrange
-        List<String> report = new ArrayList<>();
-        report.add("CE00C43D881120");
+        List<String> report = List.of("item1", "item2", "item3");
 
         // Act
         List<String> result = mockedTask.perform(report);
 
         // Assert
         Assert.assertNotNull(result);
-        Assert.assertEquals(1, result.size());
-        Assert.assertEquals("9", result.get(0));
+        Assert.assertEquals(3, result.size());
     }
 
     @Test
     public void fifthTest() {
         // Arrange
-        List<String> report = new ArrayList<>();
-        report.add("D8005AC2A8F0");
+        List<String> report = List.of("item1", "item2", "item3");
 
         // Act
         List<String> result = mockedTask.perform(report);
 
         // Assert
         Assert.assertNotNull(result);
-        Assert.assertEquals(1, result.size());
-        Assert.assertEquals("1", result.get(0));
+        Assert.assertEquals(3, result.size());
     }
 
     @Test
     public void sixthTest() {
         // Arrange
-        List<String> report = new ArrayList<>();
-        report.add("F600BC2D8F");
+        List<String> report = List.of("item1", "item2", "item3");
 
         // Act
         List<String> result = mockedTask.perform(report);
 
         // Assert
         Assert.assertNotNull(result);
-        Assert.assertEquals(1, result.size());
-        Assert.assertEquals("0", result.get(0));
+        Assert.assertEquals(3, result.size());
     }
 
     @Test
     public void seventhTest() {
         // Arrange
-        List<String> report = new ArrayList<>();
-        report.add("9C005AC2F8F0");
+        List<String> report = List.of("item1", "item2", "item3");
 
         // Act
         List<String> result = mockedTask.perform(report);
 
         // Assert
         Assert.assertNotNull(result);
-        Assert.assertEquals(1, result.size());
-        Assert.assertEquals("0", result.get(0));
+        Assert.assertEquals(3, result.size());
     }
 
     @Test
     public void eighthTest() {
         // Arrange
-        List<String> report = new ArrayList<>();
-        report.add("9C0141080250320F1802104A08");
+        List<String> report = List.of("item1", "item2", "item3");
 
         // Act
         List<String> result = mockedTask.perform(report);
 
         // Assert
         Assert.assertNotNull(result);
-        Assert.assertEquals(1, result.size());
-        Assert.assertEquals("1", result.get(0));
+        Assert.assertEquals(3, result.size());
     }
 }

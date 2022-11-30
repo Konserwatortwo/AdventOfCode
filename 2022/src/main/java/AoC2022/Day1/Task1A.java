@@ -12,15 +12,6 @@ public class Task1A extends AdventTask {
 
     @Override
     public List<String> perform(List<String> input) {
-        int increasesMeasurements = 0;
-        int previousMeasurement = Integer.MAX_VALUE;
-        for (String s : input) {
-            int currentMeasurement = Integer.parseInt(s);
-            if (currentMeasurement > previousMeasurement) {
-                increasesMeasurements++;
-            }
-            previousMeasurement = currentMeasurement;
-        }
-        return List.of(increasesMeasurements + "");
+        return null;
     }
 }

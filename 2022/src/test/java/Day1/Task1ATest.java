@@ -14,14 +14,13 @@ public class Task1ATest {
     @Test
     public void firstTest() {
         // Arrange
-        List<String> report = List.of("199", "200", "208", "210", "200", "207", "240", "269", "260", "263");
+        List<String> report = List.of("item1", "item2", "item3");
 
         // Act
         List<String> result = mockedTask.perform(report);
 
         // Assert
         Assert.assertNotNull(result);
-        Assert.assertEquals(1, result.size());
-        Assert.assertEquals("7", result.get(0));
+        Assert.assertEquals(3, result.size());
     }
 }

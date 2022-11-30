@@ -5,7 +5,6 @@ import AoC2022.Day20.Task20A;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Task20ATest {
@@ -15,29 +14,13 @@ public class Task20ATest {
     @Test
     public void firstTest() {
         // Arrange
-        List<String> report = new ArrayList<>();
-        StringBuilder builder = new StringBuilder();
-        builder.append("..#.#..#####.#.#.#.###.##.....###.##.#..###.####..#####..#....#..#..##..##");
-        builder.append("#..######.###...####..#..#####..##..#.#####...##.#.#..#.##..#.#......#.###");
-        builder.append(".######.###.####...#.##.##..#..#..#####.....#.#....###..#.##......#.....#.");
-        builder.append(".#..#..##..#...##.######.####.####.#.#...#.......#..#.#.#...####.##.#.....");
-        builder.append(".#..#...##.#.##..#...##.#.##..###.#......#.#.......#.#.#.####.###.##...#..");
-        builder.append("...####.#..#..#.##.#....##..#.####....##...##..#...#......#.#.......#.....");
-        builder.append("..##..####..#...#.#.#...##..#.#..###..#####........#..####......#..#");
-        report.add(builder.toString());
-        report.add("");
-        report.add("#..#.");
-        report.add("#....");
-        report.add("##..#");
-        report.add("..#..");
-        report.add("..###");
+        List<String> report = List.of("item1", "item2", "item3");
 
         // Act
         List<String> result = mockedTask.perform(report);
 
         // Assert
         Assert.assertNotNull(result);
-        Assert.assertEquals(1, result.size());
-        Assert.assertEquals("35", result.get(0));
+        Assert.assertEquals(3, result.size());
     }
 }

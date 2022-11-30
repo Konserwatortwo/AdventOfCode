@@ -3,7 +3,6 @@ package AoC2022.Day22;
 import AoC2022.AdventTask;
 
 import java.util.List;
-import java.util.Objects;
 
 public class Task22A extends AdventTask {
 
@@ -13,10 +12,6 @@ public class Task22A extends AdventTask {
 
     @Override
     public List<String> perform(List<String> input) {
-        Grid grid = new Grid();
-        for (String line : input) {
-            grid.setCubesInRange(new Cuboid(line));
-        }
-        return List.of(grid.countCubesOn() + "");
+        return null;
     }
 }

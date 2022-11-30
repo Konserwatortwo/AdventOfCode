@@ -12,7 +12,6 @@ public class Task16A extends AdventTask {
 
     @Override
     public List<String> perform(List<String> input) {
-        List<Instruction> instructions = InstructionReader.readInstructions(input.get(0));
-        return List.of(instructions.stream().mapToInt(Instruction::getVersion).sum() + "");
+        return null;
     }
 }

@@ -5,7 +5,6 @@ import AoC2022.Day11.Task11A;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Task11ATest {
@@ -15,24 +14,13 @@ public class Task11ATest {
     @Test
     public void firstTest() {
         // Arrange
-        List<String> report = new ArrayList<>();
-        report.add("5483143223");
-        report.add("2745854711");
-        report.add("5264556173");
-        report.add("6141336146");
-        report.add("6357385478");
-        report.add("4167524645");
-        report.add("2176841721");
-        report.add("6882881134");
-        report.add("4846848554");
-        report.add("5283751526");
+        List<String> report = List.of("item1", "item2", "item3");
 
         // Act
         List<String> result = mockedTask.perform(report);
 
         // Assert
         Assert.assertNotNull(result);
-        Assert.assertEquals(1, result.size());
-        Assert.assertEquals("1656", result.get(0));
+        Assert.assertEquals(3, result.size());
     }
 }
