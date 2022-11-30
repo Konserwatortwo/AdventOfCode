@@ -12,5 +12,8 @@
         <module name="AoC_2021" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="AoC_2021" target="15" />
+    </bytecodeTargetLevel>
   </component>
 </project>
