@@ -12,6 +12,8 @@ public class Task8A extends AdventTask {
 
     @Override
     public List<String> perform(List<String> input) {
-        return null;
+        Grid grid = new Grid(input);
+        grid.checkVisibleTrees();
+        return List.of(grid.countVisibleTrees() + "");
     }
 }

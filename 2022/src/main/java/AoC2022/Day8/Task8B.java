@@ -12,6 +12,8 @@ public class Task8B extends AdventTask {
 
     @Override
     public List<String> perform(List<String> input) {
-        return null;
+        Grid grid = new Grid(input);
+        int highestScenicScore = grid.highestScenicScore();
+        return List.of(highestScenicScore + "");
     }
 }
