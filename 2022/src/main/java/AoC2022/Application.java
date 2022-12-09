@@ -57,7 +57,7 @@ import java.util.List;
 
 public class Application {
 
-    private static final AdventTask selectedTask = new Task8B();
+    private static final AdventTask selectedTask = new Task9B();
 
     private static final List<AdventTask> allTasks = new ArrayList<>();
 
