@@ -5,7 +5,11 @@ import AoC2022.Day10.Task10B;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import static Day10.Data.*;
+import static Day10.Data.TO_SIXTH_CHECK;
 
 public class Task10BTest {
 
@@ -14,13 +18,25 @@ public class Task10BTest {
     @Test
     public void firstTest() {
         // Arrange
-        List<String> report = List.of("item1", "item2", "item3");
+        List<String> report = new ArrayList<>();
+        report.addAll(TO_FIRST_CHECK);
+        report.addAll(TO_SECOND_CHECK);
+        report.addAll(TO_THIRD_CHECK);
+        report.addAll(TO_FORTH_CHECK);
+        report.addAll(TO_FIFTH_CHECK);
+        report.addAll(TO_SIXTH_CHECK);
 
         // Act
         List<String> result = mockedTask.perform(report);
 
         // Assert
         Assert.assertNotNull(result);
-        Assert.assertEquals(3, result.size());
+        Assert.assertEquals(6, result.size());
+        Assert.assertEquals("##..##..##..##..##..##..##..##..##..##..", result.get(0));
+        Assert.assertEquals("###...###...###...###...###...###...###.", result.get(1));
+        Assert.assertEquals("####....####....####....####....####....", result.get(2));
+        Assert.assertEquals("#####.....#####.....#####.....#####.....", result.get(3));
+        Assert.assertEquals("######......######......######......####", result.get(4));
+        Assert.assertEquals("#######.......#######.......#######.....", result.get(5));
     }
 }
