@@ -2,7 +2,7 @@ package Day10;
 
 import java.util.List;
 
-public class Data {
+public class InstructionData {
 
     static final List<String> TO_FIRST_CHECK = List.of(
             "addx 15",

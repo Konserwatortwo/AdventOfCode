@@ -8,7 +8,7 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-import static Day10.Data.*;
+import static Day10.InstructionData.*;
 
 public class Task10ATest {
 
