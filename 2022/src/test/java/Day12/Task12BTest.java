@@ -5,6 +5,7 @@ import AoC2022.Day12.Task12B;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Task12BTest {
@@ -14,39 +15,19 @@ public class Task12BTest {
     @Test
     public void firstTest() {
         // Arrange
-        List<String> report = List.of("item1", "item2", "item3");
+        List<String> report = new ArrayList<>();
+        report.add("Sabqponm");
+        report.add("abcryxxl");
+        report.add("accszExk");
+        report.add("acctuvwj");
+        report.add("abdefghi");
 
         // Act
         List<String> result = mockedTask.perform(report);
 
         // Assert
         Assert.assertNotNull(result);
-        Assert.assertEquals(3, result.size());
-    }
-
-    @Test
-    public void secondTest() {
-        // Arrange
-        List<String> report = List.of("item1", "item2", "item3");
-
-        // Act
-        List<String> result = mockedTask.perform(report);
-
-        // Assert
-        Assert.assertNotNull(result);
-        Assert.assertEquals(3, result.size());
-    }
-
-    @Test
-    public void thirdTest() {
-        // Arrange
-        List<String> report = List.of("item1", "item2", "item3");
-
-        // Act
-        List<String> result = mockedTask.perform(report);
-
-        // Assert
-        Assert.assertNotNull(result);
-        Assert.assertEquals(3, result.size());
+        Assert.assertEquals(1, result.size());
+        Assert.assertEquals("29", result.get(0));
     }
 }

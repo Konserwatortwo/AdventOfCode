@@ -12,6 +12,7 @@ public class Task12B extends AdventTask {
 
     @Override
     public List<String> perform(List<String> input) {
-        return null;
+        Algorithm algorithm = new Algorithm(input);
+        return List.of(algorithm.runBackwards() + "");
     }
 }
