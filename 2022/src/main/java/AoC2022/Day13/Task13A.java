@@ -12,6 +12,21 @@ public class Task13A extends AdventTask {
 
     @Override
     public List<String> perform(List<String> input) {
-        return null;
+        int index = 1;
+        int sum = 0;
+        Packet left = null;
+
+        for (String line : input) {
+            if (line.isEmpty()) {
+                index++;
+                left = null;
+            } else if (null == left) {
+                left = new Packet(line);
+            } else if (left.compareTo(new Packet(line)) < 0) {
+                sum += index;
+            }
+        }
+
+        return List.of(sum + "");
     }
 }
