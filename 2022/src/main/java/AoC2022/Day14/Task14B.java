@@ -12,6 +12,9 @@ public class Task14B extends AdventTask {
 
     @Override
     public List<String> perform(List<String> input) {
-        return null;
+        Board board = new Board(input);
+        board.runSandWithFloor(2);
+        board.printBoard();
+        return List.of(board.countSand() + "");
     }
 }
