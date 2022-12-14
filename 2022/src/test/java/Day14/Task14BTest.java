@@ -12,7 +12,7 @@ public class Task14BTest {
     private final Task14B mockedTask = new Task14B();
 
     @Test
-    public void finalTest() {
+    public void firstTest() {
         // Arrange
         List<String> report = new ArrayList<>();
         report.add("498,4 -> 498,6 -> 496,6");

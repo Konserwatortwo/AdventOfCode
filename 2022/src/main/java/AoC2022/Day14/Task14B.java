@@ -14,7 +14,6 @@ public class Task14B extends AdventTask {
     public List<String> perform(List<String> input) {
         Board board = new Board(input);
         board.runSandWithFloor(2);
-        board.printBoard();
         return List.of(board.countSand() + "");
     }
 }
