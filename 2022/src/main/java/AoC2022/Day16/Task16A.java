@@ -2,6 +2,7 @@ package AoC2022.Day16;
 
 import AoC2022.AdventTask;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Task16A extends AdventTask {
@@ -12,6 +13,8 @@ public class Task16A extends AdventTask {
 
     @Override
     public List<String> perform(List<String> input) {
-        return null;
+        List<Worker> workers = new ArrayList<>();
+        workers.add(new Worker(30, "Norbert"));
+        return List.of(Algorithm.searchBestSolution(input, workers)+"");
     }
 }

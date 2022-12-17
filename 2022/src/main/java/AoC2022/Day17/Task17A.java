@@ -12,6 +12,8 @@ public class Task17A extends AdventTask {
 
     @Override
     public List<String> perform(List<String> input) {
-        return null;
+        Board board = new Board(input);
+        board.fallRocks(2022);
+        return List.of(board.getHighestPeak()+"");
     }
 }
