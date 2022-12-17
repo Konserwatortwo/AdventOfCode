@@ -9,7 +9,7 @@ import java.util.List;
 
 public class Task17BTest {
 
-    private final AdventTask mockedTask = new Task17B();
+    private final Task17B mockedTask = new Task17B();
 
     @Test
     public void firstTest() {

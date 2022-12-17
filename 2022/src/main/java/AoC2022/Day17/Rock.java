@@ -1,6 +1,5 @@
 package AoC2022.Day17;
 
-import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
