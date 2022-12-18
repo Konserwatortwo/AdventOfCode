@@ -3,8 +3,7 @@ package AoC2022.Day16;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class Solution implements Comparable<Solution> {
-
+public class Solution {
     private final int value;
     private final Set<Room> roomsWithOpenValves;
     private final Queue<Worker> workers;
@@ -65,13 +64,8 @@ public class Solution implements Comparable<Solution> {
                 .collect(Collectors.toSet());
     }
 
-    public boolean isBetter(Solution other) {
-        return value >= other.getValue() && workersHaveBetterTime(other);
-    }
-
-    private boolean workersHaveBetterTime(Solution other) {
-        Set<Room> roomsWithWorkers = getWorkersRooms();
-        return roomsWithWorkers.stream()
+    public boolean isBetterThan(Solution other) {
+        return value >= other.getValue() && getWorkersRooms().stream()
                 .allMatch(room -> retrieveTimeLeftForWorkerInRoom(room) >= other.retrieveTimeLeftForWorkerInRoom(room));
     }
 
@@ -81,10 +75,5 @@ public class Solution implements Comparable<Solution> {
                 .map(Worker::getTimeLeft)
                 .findAny()
                 .orElseThrow(IllegalAccessError::new);
-    }
-
-    @Override
-    public int compareTo(Solution other) {
-        return value - other.value;
     }
 }
