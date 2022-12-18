@@ -4,9 +4,6 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class Board {
-
-    // TODO CLEAN CODE
-
     private static final List<RockType> ORDER_OF_ROCKS = List.of(RockType.LINE, RockType.CROSS, RockType.LETTER, RockType.POLE, RockType.SQUARE);
 
     private int indexOfRocksType = -1;
@@ -14,81 +11,52 @@ public class Board {
     private int indexOfJetPattern = -1;
     private long highestPeak;
     private final Map<Long, List<Point>> mapOfFormation;
-
-    private final List<String> consideredPositions;
-
     private final Map<Integer, Long> highestPeakForKey;
 
     public Board(List<String> input) {
         jetPattern = input.get(0);
         highestPeak = 0;
         mapOfFormation = new HashMap<>();
-        consideredPositions = new ArrayList<>();
         highestPeakForKey = new HashMap<>();
     }
 
-    public long getHighestPeak() {
-        return highestPeak;
-    }
-
-    public void fallRocks(long numberOfRocks) {
-        long result = 0;
+    public long fallRocksAndMeasureHeight(long numberOfRocks) {
         long rockNumber = 0;
         int iterator = -1;
         List<String> duplicatedInstruction = new ArrayList<>();
+        List<String> consideredPositions = new ArrayList<>();
+        boolean cycleDetected = false;
 
-        while (result == 0 && rockNumber < numberOfRocks) {
+        while (!cycleDetected && rockNumber < numberOfRocks) {
             rockNumber++;
             RockType type = getNextRockType();
-            performFall(type);
-            highestPeakForKey.put((int) rockNumber, highestPeak);
 
             String key = type + " : " + indexOfJetPattern;
+            duplicatedInstruction.add(key);
 
-            if (consideredPositions.contains(key)) {
-                duplicatedInstruction.add(key);
-                if (iterator == -1) {
-                    iterator = consideredPositions.indexOf(key);
-                } else {
-                    iterator++;
-                }
-
-                if (!consideredPositions.get(iterator).equals(key)) {
-                    consideredPositions.addAll(duplicatedInstruction);
-                    duplicatedInstruction.clear();
-                    iterator = -1;
-                }
-
-                if (consideredPositions.size() - 1 == iterator) {
-                    result = calculateResult(duplicatedInstruction.size(), numberOfRocks - rockNumber + 1);
-                }
-
+            if (iterator == -1) {
+                iterator = consideredPositions.indexOf(key);
             } else {
-                if (!duplicatedInstruction.isEmpty()) {
-                    consideredPositions.addAll(duplicatedInstruction);
-                    duplicatedInstruction.clear();
+                iterator++;
+                if (!consideredPositions.get(iterator).equals(key)) {
                     iterator = -1;
                 }
-                consideredPositions.add(key);
-
             }
+
+            if (iterator == -1) {
+                consideredPositions.addAll(duplicatedInstruction);
+                duplicatedInstruction.clear();
+            } else {
+                if (consideredPositions.size() - 1 == iterator) {
+                    cycleDetected = true;
+                }
+            }
+
+            performFall(type);
+            highestPeakForKey.put((int) rockNumber, highestPeak);
         }
 
-        highestPeak = Math.max(highestPeak, result);
-    }
-
-
-    private long calculateResult(int rocksInCycle, long rocksLeft) {
-        int indexOfKey = consideredPositions.size() - rocksInCycle;
-        long cycles = rocksLeft / rocksInCycle;
-
-        long previousValue = highestPeakForKey.get(indexOfKey);
-        long change = (highestPeak - previousValue) / 2;
-
-        long additionalRocks = rocksLeft % rocksInCycle;
-        long additionalValue = highestPeakForKey.get((int) additionalRocks + indexOfKey - 1) - previousValue;
-
-        return highestPeak + (cycles * change) + additionalValue;
+        return cycleDetected ? calculateCycles(duplicatedInstruction.size(), consideredPositions.size(), numberOfRocks - rockNumber + 1) : highestPeak;
     }
 
     private void performFall(RockType type) {
@@ -135,5 +103,18 @@ public class Board {
             mapOfFormation.computeIfAbsent(point.getY(), key -> new ArrayList<>()).add(point);
         }
         rockPoints.forEach(point -> highestPeak = Math.max(highestPeak, point.getY() + 1));
+    }
+
+    private long calculateCycles(int rocksInCycle, int allPositions, long rocksLeft) {
+        int indexOfKey = allPositions - rocksInCycle;
+        long cycles = rocksLeft / rocksInCycle;
+
+        long previousValue = highestPeakForKey.get(indexOfKey);
+        long change = (highestPeak - previousValue) / 2;
+
+        long additionalRocks = rocksLeft % rocksInCycle;
+        long additionalValue = highestPeakForKey.get((int) additionalRocks + indexOfKey - 1) - previousValue;
+
+        return highestPeak + (cycles * change) + additionalValue;
     }
 }

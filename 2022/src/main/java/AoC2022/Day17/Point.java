@@ -3,7 +3,6 @@ package AoC2022.Day17;
 import java.util.Objects;
 
 public class Point {
-
     private final int x;
     private final long y;
 
