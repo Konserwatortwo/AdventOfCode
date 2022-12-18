@@ -1,7 +1,6 @@
 package AoC2022.Day16;
 
 public class Path {
-
     private final Room to;
     private final int cost;
 

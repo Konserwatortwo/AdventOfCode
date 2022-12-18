@@ -14,7 +14,7 @@ public class Task16A extends AdventTask {
     @Override
     public List<String> perform(List<String> input) {
         List<Worker> workers = new ArrayList<>();
-        workers.add(new Worker(30, "Norbert"));
-        return List.of(Algorithm.searchBestSolution(input, workers)+"");
+        workers.add(new Worker(30));
+        return List.of(Algorithm.searchBestSolution(input, workers) + "");
     }
 }

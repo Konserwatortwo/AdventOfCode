@@ -8,14 +8,10 @@ import java.util.List;
 import java.util.Map;
 
 public class Room {
-
     private final String name;
     private final int flowRate;
-
     private final List<String> namesOfAdjacentRooms;
-
     private final List<Room> adjacentRooms;
-
     private final List<Path> pathsToOtherValves;
 
     public Room(String line) {
@@ -58,10 +54,5 @@ public class Room {
 
     public boolean isWorthOpening() {
         return flowRate > 0;
-    }
-
-    @Override
-    public String toString() {
-        return name + "(" + flowRate + ")";
     }
 }

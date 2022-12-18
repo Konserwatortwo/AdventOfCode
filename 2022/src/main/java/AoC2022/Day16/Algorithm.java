@@ -4,30 +4,56 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class Algorithm {
-
-
     public static final String STARTING_ROOM = "AA";
 
     public static int searchBestSolution(List<String> input, List<Worker> workers) {
         Room startingRoom = createRoomsAndAssignPaths(input);
         workers.forEach(worker -> worker.moveToRoom(startingRoom));
 
-        Queue<Solution> possibleSolutions = new LinkedList<>();
-        possibleSolutions.add(new Solution(workers));
+        Map<Set<Room>, List<Solution>> cache = new HashMap<>();
+        Queue<Solution> nextIteration = new LinkedList<>();
+        nextIteration.add(new Solution(workers));
         Solution bestSolution = null;
 
-        while (!possibleSolutions.isEmpty()) {
-            Solution currentSolution = possibleSolutions.remove();
-            List<Solution> nextSolutions = currentSolution.generateSolutionFromPaths();
-            if (nextSolutions.isEmpty()) {
-                if(null == bestSolution || bestSolution.getValue() < currentSolution.getValue()) {
-                    bestSolution = currentSolution;
+        while (!nextIteration.isEmpty()) {
+            Queue<Solution> currentIteration = new LinkedList<>(nextIteration);
+            nextIteration.clear();
+            while (!currentIteration.isEmpty()) {
+                Solution currentSolution = currentIteration.remove();
+                List<Solution> nextSolutions = currentSolution.generateSolutionFromPaths();
+
+                for (Solution nextSolution : nextSolutions) {
+                    if (cache.containsKey(nextSolution.getRoomsWithOpenValves())) {
+                        boolean betterExist = false;
+
+                        List<Solution> similarSolutions = cache.get(nextSolution.getRoomsWithOpenValves());
+                        for (Solution similarSolution : similarSolutions) {
+                            if (similarSolution.haveWorkersInSameRooms(nextSolution)) {
+                                if (similarSolution.isBetter(nextSolution)) {
+                                    betterExist = true;
+                                }
+                            }
+                        }
+
+                        if (!betterExist) {
+                            cache.get(nextSolution.getRoomsWithOpenValves()).add(nextSolution);
+                            nextIteration.add(nextSolution);
+                        }
+
+                    } else {
+                        cache.put(nextSolution.getRoomsWithOpenValves(), new ArrayList<>());
+                        cache.get(nextSolution.getRoomsWithOpenValves()).add(nextSolution);
+                        nextIteration.add(nextSolution);
+                    }
                 }
-            } else {
-                possibleSolutions.addAll(nextSolutions);
+
+                if (nextSolutions.isEmpty()) {
+                    if (null == bestSolution || bestSolution.getValue() < currentSolution.getValue()) {
+                        bestSolution = currentSolution;
+                    }
+                }
             }
         }
-
         return bestSolution.getValue();
     }
 
