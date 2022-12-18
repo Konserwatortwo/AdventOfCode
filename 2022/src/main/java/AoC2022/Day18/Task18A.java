@@ -12,6 +12,6 @@ public class Task18A extends AdventTask {
 
     @Override
     public List<String> perform(List<String> input) {
-        return null;
+        return List.of(Counter.calculateTotalSurfaceArea(input) + "");
     }
 }

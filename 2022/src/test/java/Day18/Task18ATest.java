@@ -5,6 +5,7 @@ import AoC2022.Day18.Task18A;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Task18ATest {
@@ -14,104 +15,44 @@ public class Task18ATest {
     @Test
     public void firstTest() {
         // Arrange
-        List<String> report = List.of("item1", "item2", "item3");
+        List<String> report = new ArrayList<>();
+        report.add("1,1,1");
+        report.add("2,1,1");
 
         // Act
         List<String> result = mockedTask.perform(report);
 
         // Assert
         Assert.assertNotNull(result);
-        Assert.assertEquals(3, result.size());
+        Assert.assertEquals(1, result.size());
+        Assert.assertEquals("10", result.get(0));
+
     }
 
     @Test
     public void secondTest() {
         // Arrange
-        List<String> report = List.of("item1", "item2", "item3");
+        List<String> report = new ArrayList<>();
+        report.add("2,2,2");
+        report.add("1,2,2");
+        report.add("3,2,2");
+        report.add("2,1,2");
+        report.add("2,3,2");
+        report.add("2,2,1");
+        report.add("2,2,3");
+        report.add("2,2,4");
+        report.add("2,2,6");
+        report.add("1,2,5");
+        report.add("3,2,5");
+        report.add("2,1,5");
+        report.add("2,3,5");
 
         // Act
         List<String> result = mockedTask.perform(report);
 
         // Assert
         Assert.assertNotNull(result);
-        Assert.assertEquals(3, result.size());
-    }
-
-    @Test
-    public void thirdTest() {
-        // Arrange
-        List<String> report = List.of("item1", "item2", "item3");
-
-        // Act
-        List<String> result = mockedTask.perform(report);
-
-        // Assert
-        Assert.assertNotNull(result);
-        Assert.assertEquals(3, result.size());
-    }
-
-    @Test
-    public void fourthTest() {
-        // Arrange
-        List<String> report = List.of("item1", "item2", "item3");
-
-        // Act
-        List<String> result = mockedTask.perform(report);
-
-        // Assert
-        Assert.assertNotNull(result);
-        Assert.assertEquals(3, result.size());
-    }
-
-    @Test
-    public void fifthTest() {
-        // Arrange
-        List<String> report = List.of("item1", "item2", "item3");
-
-        // Act
-        List<String> result = mockedTask.perform(report);
-
-        // Assert
-        Assert.assertNotNull(result);
-        Assert.assertEquals(3, result.size());
-    }
-
-    @Test
-    public void sixthTest() {
-        // Arrange
-        List<String> report = List.of("item1", "item2", "item3");
-
-        // Act
-        List<String> result = mockedTask.perform(report);
-
-        // Assert
-        Assert.assertNotNull(result);
-        Assert.assertEquals(3, result.size());
-    }
-
-    @Test
-    public void seventhTest() {
-        // Arrange
-        List<String> report = List.of("item1", "item2", "item3");
-
-        // Act
-        List<String> result = mockedTask.perform(report);
-
-        // Assert
-        Assert.assertNotNull(result);
-        Assert.assertEquals(3, result.size());
-    }
-
-    @Test
-    public void finalTest() {
-        // Arrange
-        List<String> report = List.of("item1", "item2", "item3");
-
-        // Act
-        List<String> result = mockedTask.perform(report);
-
-        // Assert
-        Assert.assertNotNull(result);
-        Assert.assertEquals(3, result.size());
+        Assert.assertEquals(1, result.size());
+        Assert.assertEquals("64", result.get(0));
     }
 }
