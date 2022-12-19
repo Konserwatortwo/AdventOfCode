@@ -4,6 +4,8 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class Algorithm {
+
+    //TODO FIX TIME
     public static final String STARTING_ROOM = "AA";
 
     public static int searchBestSolution(List<String> input, List<Worker> workers) {
