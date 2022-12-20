@@ -12,7 +12,7 @@ public class Task19BTest {
 
     private final AdventTask mockedTask = new Task19B();
 
-//    @Test
+    @Test
     public void firstTest() {
         // Arrange
         List<String> report = new ArrayList<>();
@@ -30,7 +30,7 @@ public class Task19BTest {
         Assert.assertEquals("56", result.get(0));
     }
 
-//    @Test
+    @Test
     public void secondTest() {
         // Arrange
         List<String> report = new ArrayList<>();

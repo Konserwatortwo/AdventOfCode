@@ -1,22 +1,18 @@
 package AoC2022.Day19;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Factory {
-    private static final int PRECISION = 10;
-    private final Blueprint blueprint;
+    private static final int SWITCH_METHODOLOGY = 8; // 8 OK 7 NOT
     private final int workingTime;
-
     private List<Plan> plans;
     private int currentBestValue;
 
     public Factory(Blueprint blueprint, int workingTime) {
-        this.blueprint = blueprint;
         this.workingTime = workingTime;
         this.plans = new ArrayList<>();
+        this.plans.addAll(createNewPlans(new Plan(blueprint)));
     }
 
     public int retrieveBestPlanValue() {
@@ -24,46 +20,83 @@ public class Factory {
     }
 
     public void run() {
-        plans.addAll(createNewPlans());
-        for (int i = workingTime; i > 1; i--) {
-            runIteration(i);
+        for (int iterationLeft = workingTime; iterationLeft > 1; iterationLeft--) {
+            System.out.println("Iteration: " + (workingTime - iterationLeft) + " plans: " + plans.size() + " best: " + currentBestValue);
+            if(iterationLeft == SWITCH_METHODOLOGY) {
+                System.out.println("SWITCH_METHODOLOGY");
+            }
+
+
+            if (iterationLeft < SWITCH_METHODOLOGY) {
+                runIterationByMemoryMethod();
+            } else {
+                runIterationByCalculationMethod();
+            }
         }
         lastIteration();
     }
 
-    private List<Plan> createNewPlans() {
-        return createNewPlans(new Plan(), Type.values());
-    }
-
-    private List<Plan> createNewPlans(Plan createdFrom, Type... types) {
-        return Arrays.stream(types)
-                .filter(type -> createdFrom.numberOfRobots(type) < blueprint.retrieveMaxRobotPossible(type))
-                .map(type -> new Plan(createdFrom, type, blueprint.getRobotCost(type)))
-                .collect(Collectors.toList());
-    }
-
-    private void runIteration(int iterationLeft) {
+    private void runIterationByMemoryMethod() {
         List<Plan> nextIteration = new ArrayList<>();
+        Set<String> existingKeys = new HashSet<>();
         for (Plan plan : plans) {
-            boolean canBuildRobot = plan.canBuildPlanedRobot();
-            plan.gatherResources();
+            List<Plan> plansToAdd = runIterationForPlan(plan);
 
             if (currentBestValue < plan.retrieveNumberOfGeode()) {
                 currentBestValue = plan.retrieveNumberOfGeode();
             }
 
-            if (canBuildRobot) {
-                plan.buildPlanedRobot();
-                if (iterationLeft < PRECISION) {
-                    nextIteration.addAll(createNewPlans(plan, Type.OBSIDIAN, Type.GEODE));
-                } else {
-                    nextIteration.addAll(createNewPlans(plan, Type.values()));
+            for (Plan planToAdd : plansToAdd) {
+                String planKey = planToAdd.retrieveFullKey();
+                if (!existingKeys.contains(planKey)) {
+                    existingKeys.add(planKey);
+                    nextIteration.add(planToAdd);
                 }
-            } else {
-                nextIteration.add(plan);
             }
         }
         plans = nextIteration;
+    }
+
+    private void runIterationByCalculationMethod() {
+        HashMap<String, List<Plan>> robotsMap = new HashMap<>();
+
+        for (Plan plan : plans) {
+            List<Plan> plansToAdd = runIterationForPlan(plan);
+            for (Plan planToAdd : plansToAdd) {
+                String planKey = planToAdd.retrieveRobotKey();
+                if (robotsMap.containsKey(planKey)) {
+                    List<Plan> betterPlans = new ArrayList<>(robotsMap.get(planKey));
+                    betterPlans.stream()
+                            .filter(planToAdd::haveBetterStorage)
+                            .forEach(betterPlan -> robotsMap.get(planKey).remove(betterPlan));
+                    if (betterPlans.stream().noneMatch(betterPlan -> betterPlan.haveBetterStorage(planToAdd))) {
+                        robotsMap.get(planKey).add(planToAdd);
+                    }
+                } else {
+                    robotsMap.put(planKey, new ArrayList<>());
+                    robotsMap.get(planKey).add(planToAdd);
+                }
+            }
+        }
+        plans = robotsMap.values().stream()
+                .flatMap(List::stream)
+                .collect(Collectors.toList());
+    }
+
+    private List<Plan> runIterationForPlan(Plan plan) {
+        boolean canBuildRobot = plan.canBuildPlanedRobot();
+        plan.gatherResources();
+        if (canBuildRobot) {
+            plan.buildPlanedRobot();
+            return createNewPlans(plan);
+        }
+        return List.of(plan);
+    }
+
+    private List<Plan> createNewPlans(Plan plan) {
+        return plan.retrievePossibleRobotTypes().stream()
+                .map(type -> new Plan(plan, type))
+                .collect(Collectors.toList());
     }
 
     private void lastIteration() {
