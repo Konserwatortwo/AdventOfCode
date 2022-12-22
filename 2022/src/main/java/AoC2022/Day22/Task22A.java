@@ -12,6 +12,11 @@ public class Task22A extends AdventTask {
 
     @Override
     public List<String> perform(List<String> input) {
-        return null;
+        int index = input.indexOf("");
+        Board board = new Board(input.subList(0, index));
+        Position startingPosition = board.getFirstPosition();
+        Player player = new Player(startingPosition, input.get(index + 1));
+        player.runInstructions();
+        return List.of(player.calculatePassword() + "");
     }
 }
