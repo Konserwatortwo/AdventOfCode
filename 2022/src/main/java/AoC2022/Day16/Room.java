@@ -12,7 +12,7 @@ public class Room {
     private final int flowRate;
     private final List<String> namesOfAdjacentRooms;
     private final List<Room> adjacentRooms;
-    private final List<Path> pathsToOtherValves;
+    private final List<Cost> costToOtherValves;
 
     public Room(String line) {
         this.name = StringUtils.substringBetween(line, "Valve ", " has");
@@ -23,9 +23,9 @@ public class Room {
         } else {
             valves = StringUtils.substringAfter(line, "tunnel leads to valve ");
         }
-        namesOfAdjacentRooms = Arrays.asList(valves.split(", "));
-        adjacentRooms = new ArrayList<>();
-        pathsToOtherValves = new ArrayList<>();
+        this.namesOfAdjacentRooms = Arrays.asList(valves.split(", "));
+        this.adjacentRooms = new ArrayList<>();
+        this.costToOtherValves = new ArrayList<>();
     }
 
     public String getName() {
@@ -44,12 +44,12 @@ public class Room {
         namesOfAdjacentRooms.forEach(name -> adjacentRooms.add(roomMap.get(name)));
     }
 
-    public List<Path> getPathsToOtherValves() {
-        return pathsToOtherValves;
+    public List<Cost> getCostsToOtherValves() {
+        return costToOtherValves;
     }
 
-    public void assignPathToValve(Path path) {
-        pathsToOtherValves.add(path);
+    public void assignCostToValve(Cost cost) {
+        costToOtherValves.add(cost);
     }
 
     public boolean isWorthOpening() {

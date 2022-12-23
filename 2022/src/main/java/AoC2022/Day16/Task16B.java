@@ -2,7 +2,6 @@ package AoC2022.Day16;
 
 import AoC2022.AdventTask;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Task16B extends AdventTask {
@@ -13,9 +12,20 @@ public class Task16B extends AdventTask {
 
     @Override
     public List<String> perform(List<String> input) {
-        List<Worker> workers = new ArrayList<>();
-        workers.add(new Worker(26));
-        workers.add(new Worker(26));
-        return List.of(Algorithm.searchBestSolution(input, workers) + "");
+        List<Path> paths = PathFinder.generatePathsWithoutDuplicates(input, 26);
+        int bestValue = findBestValue(paths);
+        return List.of(bestValue + "");
+    }
+
+    private static int findBestValue(List<Path> paths) {
+        int best = 0;
+        for (Path path : paths) {
+            for (Path otherPath : paths) {
+                if (path.containsSameRoom(otherPath)) {
+                    best = Math.max(best, path.getValue() + otherPath.getValue());
+                }
+            }
+        }
+        return best;
     }
 }

@@ -1,19 +1,30 @@
 package AoC2022.Day16;
 
-public class Path {
-    private final Room to;
-    private final int cost;
+import java.util.Set;
 
-    public Path(Room to, int cost) {
-        this.to = to;
-        this.cost = cost;
+public class Path implements Comparable<Path> {
+    private final int value;
+    private final Set<Room> rooms;
+
+    public Path(int value, Set<Room> rooms) {
+        this.value = value;
+        this.rooms = rooms;
     }
 
-    public Room getTo() {
-        return to;
+    public int getValue() {
+        return value;
     }
 
-    public int getCost() {
-        return cost;
+    public Set<Room> getRooms() {
+        return rooms;
+    }
+
+    public boolean containsSameRoom(Path other) {
+        return other.getRooms().stream().noneMatch(rooms::contains);
+    }
+
+    @Override
+    public int compareTo(Path other) {
+        return value - other.value;
     }
 }
