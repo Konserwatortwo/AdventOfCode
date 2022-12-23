@@ -1,6 +1,5 @@
 package AoC2022.Day19;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,10 +10,7 @@ public class Plan {
     private final Blueprint blueprint;
     private final Map<Type, Integer> storage;
     private final Map<Type, Integer> robots;
-
     private final Type planedRobotType;
-
-    private List<String> journal;
 
     public Plan(Blueprint blueprint) {
         this.blueprint = blueprint;
@@ -26,7 +22,6 @@ public class Plan {
         }
         addRobot(Type.ORE);
         this.planedRobotType = null;
-        journal = new ArrayList<>();
     }
 
     public Plan(Plan createdFrom, Type planedRobotType) {
@@ -34,11 +29,9 @@ public class Plan {
         this.storage = new HashMap<>(createdFrom.storage);
         this.robots = new HashMap<>(createdFrom.robots);
         this.planedRobotType = planedRobotType;
-        journal = new ArrayList<>(createdFrom.journal);
     }
 
     public void gatherResources() {
-        journal.add(retrieveFullKey());
         for (Type type : Type.values()) {
             storage.put(type, storage.get(type) + robots.get(type));
         }
@@ -67,7 +60,6 @@ public class Plan {
         List<Type> types = Stream.of(Type.ORE, Type.CLAY)
                 .filter(this::canPlanRobot)
                 .collect(Collectors.toList());
-
         if (containsRobot(Type.CLAY) && canPlanRobot(Type.OBSIDIAN)) {
             types.add(Type.OBSIDIAN);
         }
@@ -83,6 +75,19 @@ public class Plan {
 
     private boolean containsRobot(Type robotType) {
         return robots.get(robotType) > 0;
+    }
+
+    public boolean canBeatCurrentBest(int best, int turnsLeft) {
+        return best < retrieveMaxPossibleGeodes(turnsLeft);
+    }
+
+    private int retrieveMaxPossibleGeodes(int turnsLeft) {
+        int possibleNumberOfGeodes = storage.get(Type.GEODE);
+        int possibleNumberOfRobots = robots.get(Type.GEODE);
+        for (int i = turnsLeft; i > 0; i--) {
+            possibleNumberOfGeodes += possibleNumberOfRobots++;
+        }
+        return possibleNumberOfGeodes;
     }
 
     public int retrieveNumberOfGeode() {

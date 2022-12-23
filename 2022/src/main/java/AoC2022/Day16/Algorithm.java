@@ -8,6 +8,77 @@ public class Algorithm {
     //TODO FIX TIME
     public static final String STARTING_ROOM = "AA";
 
+//    public static void alfa(List<String> input) {
+//        Room startingRoom = createRoomsAndAssignPaths(input);
+//        List<Trail>
+//
+//
+//    }
+//
+//    private List<Trail> generateTrails(Room currentRoom, int timeLeft, PreviousPoints
+//                                       ) {
+//
+//    }
+
+
+
+    public static int searchBestSolution(List<String> input, List<Worker> workers) {
+        Room startingRoom = createRoomsAndAssignPaths(input);
+        workers.forEach(worker -> worker.moveToRoom(startingRoom));
+
+        Map<Set<Room>, List<Solution>> cache = new HashMap<>();
+        IterationResult iterationResult = new IterationResult(new Solution(workers));
+
+        while (!iterationResult.getNextIteration().isEmpty()) {
+            iterationResult = alfa(iterationResult, cache);
+        }
+
+        assert iterationResult.getBestSolution() != null;
+        return iterationResult.getBestSolution().getValue();
+    }
+
+    private static IterationResult alfa(IterationResult previousIteration, Map<Set<Room>, List<Solution>> cache) {
+        Queue<Solution> currentIteration = new LinkedList<>(previousIteration.getNextIteration());
+        IterationResult iterationResult = new IterationResult(previousIteration);
+
+        while (!currentIteration.isEmpty()) {
+            Solution currentSolution = currentIteration.remove();
+            List<Solution> nextSolutions = currentSolution.generateSolutionFromPaths();
+
+            for (Solution nextSolution : nextSolutions) {
+                if (cache.containsKey(nextSolution.getRoomsWithOpenValves())) {
+                    boolean betterExist = false;
+
+                    List<Solution> similarSolutions = cache.get(nextSolution.getRoomsWithOpenValves());
+                    for (Solution similarSolution : similarSolutions) {
+                        if (similarSolution.haveWorkersInSameRooms(nextSolution)) {
+                            if (similarSolution.isBetterThan(nextSolution)) {
+                                betterExist = true;
+                            }
+                        }
+                    }
+
+                    if (!betterExist) {
+                        cache.get(nextSolution.getRoomsWithOpenValves()).add(nextSolution);
+
+                        iterationResult.addToNextIteration(nextSolution);
+                    }
+
+                } else {
+                    cache.put(nextSolution.getRoomsWithOpenValves(), new ArrayList<>());
+                    cache.get(nextSolution.getRoomsWithOpenValves()).add(nextSolution);
+                    iterationResult.addToNextIteration(nextSolution);
+                }
+            }
+
+            if (nextSolutions.isEmpty()) {
+                iterationResult.assignBestSolution(currentSolution);
+            }
+        }
+
+        return iterationResult;
+    }
+
     public static int searchBestSolution2(List<String> input, List<Worker> workers) {
         Room startingRoom = createRoomsAndAssignPaths(input);
         workers.forEach(worker -> worker.moveToRoom(startingRoom));
@@ -23,24 +94,11 @@ public class Algorithm {
         return iterationResult.getBestSolution().getValue();
     }
 
-    private static IterationResult runIteration(IterationResult previousIteration, Map<Set<Room>, List<Solution>> cache) {
-        Queue<Solution> currentIteration = new LinkedList<>(previousIteration.getNextIteration());
-        IterationResult iterationResult = new IterationResult(previousIteration);
-
-        while (!currentIteration.isEmpty()) {
-            Solution currentSolution = currentIteration.remove();
-            List<Solution> nextSolutions = currentSolution.generateSolutionFromPaths();
-            Set<Solution> solutionsWithoutDuplicates = nextSolutions.stream()
-                    .filter(solution -> !isBetterSolutionInCache(solution, cache))
-                    .collect(Collectors.toSet());
-            iterationResult.addToNextIteration(solutionsWithoutDuplicates);
-
-            if (nextSolutions.isEmpty()) {
-                iterationResult.assignBestSolution(currentSolution);
-            }
-        }
-
-        return iterationResult;
+    private static Room createRoomsAndAssignPaths(List<String> input) {
+        Map<String, Room> roomMap = input.stream().map(Room::new).collect(Collectors.toMap(Room::getName, room -> room));
+        roomMap.values().forEach(room -> room.assignRooms(roomMap));
+        assignBestPathsToValves(new ArrayList<>(roomMap.values()));
+        return roomMap.get(STARTING_ROOM);
     }
 
     private static void assignBestPathsToValves(List<Room> rooms) {
@@ -72,22 +130,34 @@ public class Algorithm {
                     .flatMap(List::stream)
                     .filter(nextRoom -> !visited.contains(nextRoom))
                     .collect(Collectors.toSet());
-
         }
         return distance;
+    }
+
+    private static IterationResult runIteration(IterationResult previousIteration, Map<Set<Room>, List<Solution>> cache) {
+        Queue<Solution> currentIteration = new LinkedList<>(previousIteration.getNextIteration());
+        IterationResult iterationResult = new IterationResult(previousIteration);
+
+        while (!currentIteration.isEmpty()) {
+            Solution currentSolution = currentIteration.remove();
+            List<Solution> nextSolutions = currentSolution.generateSolutionFromPaths();
+            Set<Solution> solutionsWithoutDuplicates = nextSolutions.stream()
+                    .filter(solution -> !isBetterSolutionInCache(solution, cache))
+                    .collect(Collectors.toSet());
+            iterationResult.addToNextIteration(solutionsWithoutDuplicates);
+
+            if (nextSolutions.isEmpty()) {
+                iterationResult.assignBestSolution(currentSolution);
+            }
+        }
+
+        return iterationResult;
     }
 
     private static boolean isBetterSolutionInCache(Solution nextSolution, Map<Set<Room>, List<Solution>> cache) {
         Set<Room> key = nextSolution.getRoomsWithOpenValves();
         return cache.containsKey(key) && cache.get(key).stream()
                 .anyMatch(similarSolution -> similarSolution.haveWorkersInSameRooms(nextSolution) && similarSolution.isBetterThan(nextSolution));
-    }
-
-    private static Room createRoomsAndAssignPaths(List<String> input) {
-        Map<String, Room> roomMap = input.stream().map(Room::new).collect(Collectors.toMap(Room::getName, room -> room));
-        roomMap.values().forEach(room -> room.assignRooms(roomMap));
-        assignBestPathsToValves(new ArrayList<>(roomMap.values()));
-        return roomMap.get(STARTING_ROOM);
     }
 
     private static class IterationResult {
@@ -116,6 +186,11 @@ public class Algorithm {
         public void addToNextIteration(Set<Solution> solutions) {
             this.nextIteration.addAll(solutions);
         }
+
+        public void addToNextIteration(Solution solution) {
+            this.nextIteration.add(solution);
+        }
+
 
         public void assignBestSolution(Solution solution) {
             if (null == bestSolution || bestSolution.getValue() < solution.getValue()) {
