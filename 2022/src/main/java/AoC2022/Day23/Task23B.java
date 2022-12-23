@@ -12,6 +12,12 @@ public class Task23B extends AdventTask {
 
     @Override
     public List<String> perform(List<String> input) {
-        return null;
+        Grove grove = new Grove(input);
+        int roundNumber = 0;
+        while (!grove.isIdle()) {
+            roundNumber++;
+            grove.performRound();
+        }
+        return List.of(roundNumber + "");
     }
 }

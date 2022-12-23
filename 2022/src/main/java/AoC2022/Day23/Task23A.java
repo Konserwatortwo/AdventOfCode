@@ -12,6 +12,10 @@ public class Task23A extends AdventTask {
 
     @Override
     public List<String> perform(List<String> input) {
-        return null;
+        Grove grove = new Grove(input);
+        for (int i = 0; i < 10; i++) {
+            grove.performRound();
+        }
+        return List.of(grove.retrieveEmptyGroundBetweenElf()+"");
     }
 }
