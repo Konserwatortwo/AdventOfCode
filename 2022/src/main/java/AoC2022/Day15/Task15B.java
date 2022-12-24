@@ -1,6 +1,7 @@
 package AoC2022.Day15;
 
 import AoC2022.AdventTask;
+import AoC2022.common.Position;
 
 import java.util.List;
 

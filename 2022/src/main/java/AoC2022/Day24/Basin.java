@@ -1,5 +1,8 @@
 package AoC2022.Day24;
 
+import AoC2022.common.Direction;
+import AoC2022.common.Position;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;

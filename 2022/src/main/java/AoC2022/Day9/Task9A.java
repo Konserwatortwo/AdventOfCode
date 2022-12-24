@@ -14,19 +14,19 @@ public class Task9A extends AdventTask {
 
     @Override
     public List<String> perform(List<String> input) {
-        Position headPosition = new Position();
-        Position tailPosition = new Position(headPosition);
+        Location headLocation = new Location();
+        Location tailLocation = new Location(headLocation);
         Set<String> visitedPositions = new HashSet<>();
-        visitedPositions.add(tailPosition.toString());
+        visitedPositions.add(tailLocation.toString());
 
         for (String command : input) {
             String[] elements = command.split(" ");
             int numberOfSteps = Integer.parseInt(elements[1]);
             for (int i = 1; i <= numberOfSteps; i++) {
-                headPosition.moveByDirection(elements[0]);
-                if(!tailPosition.isAdjacentToPreviousPosition()) {
-                    tailPosition.adjustToPreviousPosition();
-                    visitedPositions.add(tailPosition.toString());
+                headLocation.moveByDirection(elements[0]);
+                if(!tailLocation.isAdjacentToPreviousPosition()) {
+                    tailLocation.adjustToPreviousPosition();
+                    visitedPositions.add(tailLocation.toString());
                 }
             }
         }

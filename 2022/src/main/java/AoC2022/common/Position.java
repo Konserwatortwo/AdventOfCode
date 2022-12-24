@@ -1,4 +1,4 @@
-package AoC2022.Day24;
+package AoC2022.common;
 
 import java.util.Objects;
 

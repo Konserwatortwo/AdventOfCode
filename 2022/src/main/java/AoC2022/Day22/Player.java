@@ -1,15 +1,18 @@
 package AoC2022.Day22;
 
+import AoC2022.common.Direction;
+import AoC2022.common.DirectionUtils;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Player {
     private final List<String> instructionList;
-    private Position position;
+    private ExtendedPosition position;
     private Direction direction;
 
-    public Player(Position startingPosition, String instructionLine) {
+    public Player(ExtendedPosition startingPosition, String instructionLine) {
         this.instructionList = generateInstructions(instructionLine);
         this.position = startingPosition;
         this.direction = Direction.EAST;
@@ -26,12 +29,13 @@ public class Player {
     public void runInstructions() {
         for (String instructions : instructionList) {
             switch (instructions) {
-                case "R" -> direction = direction.rotationClockwise();
-                case "L" -> direction = direction.rotationCounterClockwise();
+                case "R" -> direction = DirectionUtils.retrieveClockwise(direction);
+                case "L" -> direction = DirectionUtils.retrieveCounterClockwise(direction);
                 default -> move(Integer.parseInt(instructions));
             }
         }
     }
+
 
     private void move(int stepsNumber) {
         int steps = 0;
@@ -41,13 +45,7 @@ public class Player {
             position = position.moveInDirection(direction);
             Side newSide = position.getSide();
             if (null != oldSide && null != newSide && oldSide != newSide) {
-                Direction opositteToExisting = newSide.getOtherSideDirection(oldSide);
-                direction = switch (opositteToExisting) {
-                    case NORTH -> Direction.SOUTH;
-                    case EAST -> Direction.WEST;
-                    case SOUTH -> Direction.NORTH;
-                    case WEST -> Direction.EAST;
-                };
+                direction = DirectionUtils.retrieveOpposite(newSide.getOtherSideDirection(oldSide));
             }
         }
         System.out.println(position);
@@ -55,6 +53,14 @@ public class Player {
 
 
     public int calculatePassword() {
-        return 1000 * (position.getY() + 1) + 4 * (position.getX() + 1) + direction.getValueForPassword();
+        int valueForDirection = switch (direction) {
+            case NORTH -> 3;
+            case EAST -> 0;
+            case SOUTH -> 1;
+            case WEST -> 2;
+            default -> throw new IllegalStateException("Unexpected value: " + direction);
+        };
+        return 1000 * (position.getY() + 1) + 4 * (position.getX() + 1) + valueForDirection;
     }
+
 }

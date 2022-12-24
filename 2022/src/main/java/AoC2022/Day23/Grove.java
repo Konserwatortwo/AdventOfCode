@@ -1,5 +1,8 @@
 package AoC2022.Day23;
 
+import AoC2022.common.Direction;
+import AoC2022.common.Position;
+
 import java.util.*;
 import java.util.stream.Collectors;
 

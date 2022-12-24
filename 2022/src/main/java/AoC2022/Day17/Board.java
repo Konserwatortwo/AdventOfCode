@@ -66,12 +66,12 @@ public class Board {
                 .collect(Collectors.toSet());
         boolean isMoving = true;
         while (isMoving) {
-            Direction pushDirection = getNextPush() == '<' ? Direction.LEFT : Direction.RIGHT;
-            if (currentRock.canMoveInDirection(pushDirection, pointsInFormation)) {
-                currentRock.moveInDirection(pushDirection);
+            Movement pushMovement = getNextPush() == '<' ? Movement.LEFT : Movement.RIGHT;
+            if (currentRock.canMoveInDirection(pushMovement, pointsInFormation)) {
+                currentRock.moveInDirection(pushMovement);
             }
-            if (currentRock.canMoveInDirection(Direction.DOWN, pointsInFormation)) {
-                currentRock.moveInDirection(Direction.DOWN);
+            if (currentRock.canMoveInDirection(Movement.DOWN, pointsInFormation)) {
+                currentRock.moveInDirection(Movement.DOWN);
             } else {
                 isMoving = false;
             }

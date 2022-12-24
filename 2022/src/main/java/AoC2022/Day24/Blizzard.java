@@ -1,6 +1,9 @@
 package AoC2022.Day24;
 
 
+import AoC2022.common.Direction;
+import AoC2022.common.Position;
+
 public class Blizzard {
     private final Direction direction;
     private Position position;
@@ -19,6 +22,6 @@ public class Blizzard {
     }
 
     public Position getNextPosition() {
-        return direction.moveInDirection(position);
+        return direction.getNextPosition(position);
     }
 }

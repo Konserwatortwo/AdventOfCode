@@ -14,7 +14,7 @@ public class Task22B extends AdventTask {
     public List<String> perform(List<String> input) {
         int index = input.indexOf("");
         Cube cube = new Cube(input.subList(0, index), 50);
-        Position startingPosition = cube.getFirstPosition();
+        ExtendedPosition startingPosition = cube.getFirstPosition();
         Player player = new Player(startingPosition, input.get(index + 1));
         player.runInstructions();
         return List.of(player.calculatePassword() + "");

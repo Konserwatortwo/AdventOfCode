@@ -1,5 +1,8 @@
 package AoC2022.Day22;
 
+import AoC2022.common.Direction;
+import AoC2022.common.DirectionUtils;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,7 +10,7 @@ public class Cube {
     private final int sizeX;
     private final int sizeY;
     private final int sideSize;
-    private final Position firstPosition;
+    private final ExtendedPosition firstPosition;
 
     public Cube(List<String> input, int sideSize) {
         this.sizeX = input.stream()
@@ -18,7 +21,7 @@ public class Cube {
         this.sideSize = sideSize;
 
         TileType[][] grid = createGrid(input);
-        List<Position> positions = createPositions(grid);
+        List<ExtendedPosition> positions = createPositions(grid);
         this.firstPosition = positions.get(0);
         linkPositions(positions);
         List<Side> sides = cutToCubes(grid, positions);
@@ -46,7 +49,6 @@ public class Cube {
         sides.get(5).addAllAdjacentSides(sides.get(3), sides.get(4), sides.get(1), sides.get(0));
 
 
-
         return;
 
         // TODO
@@ -63,7 +65,7 @@ public class Cube {
 //        }
     }
 
-    private List<Side> cutToCubes(TileType[][] grid, List<Position> positions) {
+    private List<Side> cutToCubes(TileType[][] grid, List<ExtendedPosition> positions) {
         List<Side> sides = new ArrayList<>();
         int numberOfCubesHorizontal = sizeX / sideSize;
         int numberOfCubesVertical = sizeY / sideSize;
@@ -75,29 +77,29 @@ public class Cube {
                 if (grid[startingX][startingY] != TileType.EMPTY) {
 
 
-                    sides.add(new Side(Position.of(horizontal, vertical), createSideGrid(grid, positions, startingX, startingY)));
+                    sides.add(new Side(ExtendedPosition.of(horizontal, vertical), createSideGrid(grid, positions, startingX, startingY)));
                 }
             }
         }
         return sides;
     }
 
-    private Position[][] createSideGrid(TileType[][] grid, List<Position> positions, int startingX, int startingY) {
-        Position[][] sideGrid = new Position[sideSize][sideSize];
+    private ExtendedPosition[][] createSideGrid(TileType[][] grid, List<ExtendedPosition> positions, int startingX, int startingY) {
+        ExtendedPosition[][] sideGrid = new ExtendedPosition[sideSize][sideSize];
 
         for (int y = 0; y < sideSize; y++) {
             for (int x = 0; x < sideSize; x++) {
                 int otherX = startingX + x;
                 int otherY = startingY + y;
                 if (grid[otherX][otherY] == TileType.FREE) {
-                    sideGrid[x][y] = positions.get(positions.indexOf(Position.of(otherX, otherY)));
+                    sideGrid[x][y] = positions.get(positions.indexOf(ExtendedPosition.of(otherX, otherY)));
                 }
             }
         }
         return sideGrid;
     }
 
-    public Position getFirstPosition() {
+    public ExtendedPosition getFirstPosition() {
         return firstPosition;
     }
 
@@ -119,22 +121,22 @@ public class Cube {
         return grid;
     }
 
-    private List<Position> createPositions(TileType[][] grid) {
-        List<Position> listPositions = new ArrayList<>();
+    private List<ExtendedPosition> createPositions(TileType[][] grid) {
+        List<ExtendedPosition> listPositions = new ArrayList<>();
         for (int y = 0; y < sizeY; y++) {
             for (int x = 0; x < sizeX; x++) {
                 if (grid[x][y] == TileType.FREE) {
-                    listPositions.add(Position.of(x, y));
+                    listPositions.add(ExtendedPosition.of(x, y));
                 }
             }
         }
         return listPositions;
     }
 
-    private void linkPositions(List<Position> positions) {
-        for (Position position : positions) {
-            for (Direction direction : Direction.values()) {
-                Position positionInDirection = direction.moveInDirection(position);
+    private void linkPositions(List<ExtendedPosition> positions) {
+        for (ExtendedPosition position : positions) {
+            for (Direction direction : DirectionUtils.retrieveSimpleDirections()) {
+                ExtendedPosition positionInDirection = ExtendedPosition.of(direction.getNextPosition(position));
                 if (positions.contains(positionInDirection)) {
                     int index = positions.indexOf(positionInDirection);
                     position.addAdjacentPositions(direction, positions.get(index));
@@ -143,7 +145,7 @@ public class Cube {
         }
     }
 
-    private void createPortalVertical(TileType[][] grid, List<Position> positions) {
+    private void createPortalVertical(TileType[][] grid, List<ExtendedPosition> positions) {
         for (int y = 0; y < sizeY; y++) {
 
             int firstIndex = 0;
@@ -156,12 +158,12 @@ public class Cube {
                 lastIndex--;
             }
 
-            Position first = Position.of(firstIndex, y);
-            Position last = Position.of(lastIndex, y);
+            ExtendedPosition first = ExtendedPosition.of(firstIndex, y);
+            ExtendedPosition last = ExtendedPosition.of(lastIndex, y);
             ;
             if (positions.contains(first) && positions.contains(last)) {
-                Position realFirst = positions.get(positions.indexOf(first));
-                Position realLast = positions.get(positions.indexOf(last));
+                ExtendedPosition realFirst = positions.get(positions.indexOf(first));
+                ExtendedPosition realLast = positions.get(positions.indexOf(last));
 
                 realFirst.addAdjacentPositions(Direction.WEST, realLast);
                 realLast.addAdjacentPositions(Direction.EAST, realFirst);
@@ -169,7 +171,7 @@ public class Cube {
         }
     }
 
-    private void createPortalHorizontal(TileType[][] grid, List<Position> positions) {
+    private void createPortalHorizontal(TileType[][] grid, List<ExtendedPosition> positions) {
         for (int x = 0; x < sizeX; x++) {
 
             int firstIndex = 0;
@@ -182,11 +184,11 @@ public class Cube {
                 lastIndex--;
             }
 
-            Position first = Position.of(x, firstIndex);
-            Position last = Position.of(x, lastIndex);
+            ExtendedPosition first = ExtendedPosition.of(x, firstIndex);
+            ExtendedPosition last = ExtendedPosition.of(x, lastIndex);
             if (positions.contains(first) && positions.contains(last)) {
-                Position realFirst = positions.get(positions.indexOf(first));
-                Position realLast = positions.get(positions.indexOf(last));
+                ExtendedPosition realFirst = positions.get(positions.indexOf(first));
+                ExtendedPosition realLast = positions.get(positions.indexOf(last));
 
                 realFirst.addAdjacentPositions(Direction.NORTH, realLast);
                 realLast.addAdjacentPositions(Direction.SOUTH, realFirst);

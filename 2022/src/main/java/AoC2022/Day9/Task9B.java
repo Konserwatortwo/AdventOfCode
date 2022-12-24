@@ -17,37 +17,37 @@ public class Task9B extends AdventTask {
 
     @Override
     public List<String> perform(List<String> input) {
-        Position headPosition = new Position();
-        List<Position> positions = createPositionsAfterHead(headPosition);
-        Position lastPosition = positions.get(NUMBER_OF_POSITIONS - 1);
+        Location headLocation = new Location();
+        List<Location> locations = createPositionsAfterHead(headLocation);
+        Location lastLocation = locations.get(NUMBER_OF_POSITIONS - 1);
         Set<String> visitedPositions = new HashSet<>();
 
         for (String command : input) {
             String[] elements = command.split(" ");
             int numberOfSteps = Integer.parseInt(elements[1]);
             for (int i = 1; i <= numberOfSteps; i++) {
-                headPosition.moveByDirection(elements[0]);
+                headLocation.moveByDirection(elements[0]);
 
                 for (int j = 0; j < NUMBER_OF_POSITIONS; j++) {
-                    if (!positions.get(j).isAdjacentToPreviousPosition()) {
-                        positions.get(j).adjustToPreviousPosition();
+                    if (!locations.get(j).isAdjacentToPreviousPosition()) {
+                        locations.get(j).adjustToPreviousPosition();
                     }
                 }
 
-                visitedPositions.add(lastPosition.toString());
+                visitedPositions.add(lastLocation.toString());
             }
         }
 
         return List.of(visitedPositions.size() + "");
     }
 
-    private List<Position> createPositionsAfterHead(Position head) {
-        List<Position> result = new ArrayList<>();
-        Position last = head;
+    private List<Location> createPositionsAfterHead(Location head) {
+        List<Location> result = new ArrayList<>();
+        Location last = head;
         for (int i = 1; i <= NUMBER_OF_POSITIONS; i++) {
-            Position newPosition = new Position(last);
-            result.add(newPosition);
-            last = newPosition;
+            Location newLocation = new Location(last);
+            result.add(newLocation);
+            last = newLocation;
         }
         return result;
     }

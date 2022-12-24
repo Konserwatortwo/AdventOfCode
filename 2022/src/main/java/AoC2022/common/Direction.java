@@ -1,10 +1,17 @@
-package AoC2022.Day24;
+package AoC2022.common;
+
+import java.util.List;
+import java.util.Set;
 
 public enum Direction {
     NORTH(0, -1),
+    NORTH_EAST(1, -1),
     EAST(1, 0),
+    SOUTH_EAST(1, 1),
     SOUTH(0, 1),
-    WEST(-1, 0);
+    SOUTH_WEST(-1, 1),
+    WEST(-1, 0),
+    NORTH_WEST(-1, -1);
 
     private final int changeX;
     private final int changeY;
@@ -14,7 +21,9 @@ public enum Direction {
         this.changeY = changeY;
     }
 
-    public Position moveInDirection(Position position) {
+    public Position getNextPosition(Position position) {
         return Position.of(position.getX() + changeX, position.getY() + changeY);
     }
+
+
 }

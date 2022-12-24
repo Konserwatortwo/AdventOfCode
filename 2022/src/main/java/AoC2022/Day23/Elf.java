@@ -1,5 +1,9 @@
 package AoC2022.Day23;
 
+import AoC2022.common.Direction;
+import AoC2022.common.DirectionUtils;
+import AoC2022.common.Position;
+
 import java.util.List;
 import java.util.Queue;
 
@@ -20,7 +24,7 @@ public class Elf {
     }
 
     public boolean shouldMoveInThisRound(List<Position> otherPositions) {
-        return !arePositionsFree(Direction.retrieveAllNearbyPositions(currentPosition), otherPositions);
+        return !arePositionsFree(DirectionUtils.retrieveAllNearbyPositions(currentPosition), otherPositions);
     }
 
     private boolean arePositionsFree(List<Position> checkingPositions, List<Position> occupiedPositions) {
@@ -31,7 +35,7 @@ public class Elf {
         consideredPosition = null;
         while (!directionsOrder.isEmpty() && consideredPosition == null) {
             Direction nextDirection = directionsOrder.remove();
-            if (arePositionsFree(nextDirection.getAdjacentPositions(currentPosition), otherPositions)) {
+            if (arePositionsFree(DirectionUtils.retrieveAdjacentPositions(currentPosition, nextDirection), otherPositions)) {
                 consideredPosition = nextDirection.getNextPosition(currentPosition);
             }
         }

@@ -1,5 +1,7 @@
 package AoC2022.Day15;
 
+import AoC2022.common.Position;
+
 public class Sensor {
 
     private final Position position;
@@ -11,9 +13,16 @@ public class Sensor {
                 .replace(" closest beacon is at ", "")
                 .split(":");
 
-        this.position = new Position(elements[0]);
-        this.nearestBeacon = new Position(elements[1]);
+        this.position = createPosition(elements[0]);
+        this.nearestBeacon = createPosition(elements[1]);
         this.distance = calculateManhattanDistanceToBeacon();
+    }
+
+    private Position createPosition(String coordinates) {
+        String[] elements = coordinates.replace("x=", "")
+                .replace("y=", "")
+                .split(", ");
+        return Position.of(Integer.parseInt(elements[0]), Integer.parseInt(elements[1]));
     }
 
     private int calculateManhattanDistanceToBeacon() {

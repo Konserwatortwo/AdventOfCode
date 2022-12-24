@@ -15,16 +15,16 @@ public class Rock {
         return points;
     }
 
-    public boolean canMoveInDirection(Direction direction, Set<Point> existingPoints) {
+    public boolean canMoveInDirection(Movement movement, Set<Point> existingPoints) {
         Set<Point> speculativePoints = points.stream()
-                .map(direction::movePoint)
+                .map(movement::movePoint)
                 .collect(Collectors.toSet());
-        return speculativePoints.stream().allMatch(direction.getCheckForBorders()) && speculativePoints.stream().noneMatch(existingPoints::contains);
+        return speculativePoints.stream().allMatch(movement.getCheckForBorders()) && speculativePoints.stream().noneMatch(existingPoints::contains);
     }
 
-    public void moveInDirection(Direction direction) {
+    public void moveInDirection(Movement movement) {
         points = points.stream()
-                .map(direction::movePoint)
+                .map(movement::movePoint)
                 .collect(Collectors.toSet());
     }
 }
