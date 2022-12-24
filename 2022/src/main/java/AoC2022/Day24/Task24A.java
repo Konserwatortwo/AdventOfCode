@@ -12,6 +12,8 @@ public class Task24A extends AdventTask {
 
     @Override
     public List<String> perform(List<String> input) {
-        return null;
+        Basin basin = new Basin(input);
+        basin.runToEnd();
+        return List.of(basin.getIterationNumber() + "");
     }
 }

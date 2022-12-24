@@ -2,15 +2,16 @@ package Day24;
 
 import AoC2022.AdventTask;
 import AoC2022.Day24.Task24A;
+import AoC2022.Day24.Task24B;
 import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Task24ATest {
+public class Task24BTest {
 
-    private final AdventTask mockedTask = new Task24A();
+    private final AdventTask mockedTask = new Task24B();
 
     @Test
     public void firstTest() {
@@ -30,7 +31,7 @@ public class Task24ATest {
         // Assert
         Assert.assertNotNull(result);
         Assert.assertEquals(1, result.size());
-        Assert.assertEquals("10", result.get(0));
+        Assert.assertEquals("30", result.get(0));
     }
 
 
@@ -51,6 +52,6 @@ public class Task24ATest {
         // Assert
         Assert.assertNotNull(result);
         Assert.assertEquals(1, result.size());
-        Assert.assertEquals("18", result.get(0));
+        Assert.assertEquals("54", result.get(0));
     }
 }
