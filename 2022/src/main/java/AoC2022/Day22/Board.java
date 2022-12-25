@@ -6,10 +6,12 @@ import AoC2022.common.DirectionUtils;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Board {
-    private final int sizeX;
-    private final int sizeY;
-    private final ExtendedPosition firstPosition;
+public abstract class Board {
+    protected final int sizeX;
+    protected final int sizeY;
+    protected final TileType[][] grid;
+    protected final List<ExtendedPosition> positions;
+    protected final ExtendedPosition firstPosition;
 
     public Board(List<String> input) {
         this.sizeX = input.stream()
@@ -17,14 +19,10 @@ public class Board {
                 .max()
                 .orElseThrow(IllegalArgumentException::new);
         this.sizeY = input.size();
-        TileType[][] grid = createGrid(input);
-
-
-        List<ExtendedPosition> positions = createPositions(grid);
+        this.grid = createGrid(input);
+        this.positions = createPositions();
+        linkPositions();
         this.firstPosition = positions.get(0);
-        linkPositions(positions);
-        createPortalVertical(grid, positions);
-        createPortalHorizontal(grid, positions);
     }
 
     public ExtendedPosition getFirstPosition() {
@@ -49,7 +47,7 @@ public class Board {
         return grid;
     }
 
-    private List<ExtendedPosition> createPositions(TileType[][] grid) {
+    private List<ExtendedPosition> createPositions() {
         List<ExtendedPosition> listPositions = new ArrayList<>();
         for (int y = 0; y < sizeY; y++) {
             for (int x = 0; x < sizeX; x++) {
@@ -61,7 +59,7 @@ public class Board {
         return listPositions;
     }
 
-    private void linkPositions(List<ExtendedPosition> positions) {
+    private void linkPositions() {
         for (ExtendedPosition position : positions) {
             for (Direction direction : DirectionUtils.retrieveSimpleDirections()) {
                 ExtendedPosition positionInDirection = ExtendedPosition.of(direction.getNextPosition(position));
@@ -70,67 +68,6 @@ public class Board {
                     position.addAdjacentPositions(direction, positions.get(index));
                 }
             }
-        }
-    }
-
-    private void createPortalVertical(TileType[][] grid, List<ExtendedPosition> positions) {
-        for (int y = 0; y < sizeY; y++) {
-
-            int firstIndex = 0;
-            while (grid[firstIndex][y] == TileType.EMPTY && firstIndex < sizeX) {
-                firstIndex++;
-            }
-
-            int lastIndex = sizeX - 1;
-            while (grid[lastIndex][y] == TileType.EMPTY && lastIndex > 0) {
-                lastIndex--;
-            }
-
-            ExtendedPosition first = ExtendedPosition.of(firstIndex, y);
-            ExtendedPosition last = ExtendedPosition.of(lastIndex, y);
-            ;
-            if (positions.contains(first) && positions.contains(last)) {
-                ExtendedPosition realFirst = positions.get(positions.indexOf(first));
-                ExtendedPosition realLast = positions.get(positions.indexOf(last));
-
-                realFirst.addAdjacentPositions(Direction.WEST, realLast);
-                realLast.addAdjacentPositions(Direction.EAST, realFirst);
-            }
-        }
-    }
-
-    private void createPortalHorizontal(TileType[][] grid, List<ExtendedPosition> positions) {
-        for (int x = 0; x < sizeX; x++) {
-
-            int firstIndex = 0;
-            while (grid[x][firstIndex] == TileType.EMPTY && firstIndex < sizeY) {
-                firstIndex++;
-            }
-
-            int lastIndex = sizeY - 1;
-            while (grid[x][lastIndex] == TileType.EMPTY && lastIndex > 0) {
-                lastIndex--;
-            }
-
-            ExtendedPosition first = ExtendedPosition.of(x, firstIndex);
-            ExtendedPosition last = ExtendedPosition.of(x, lastIndex);
-            if (positions.contains(first) && positions.contains(last)) {
-                ExtendedPosition realFirst = positions.get(positions.indexOf(first));
-                ExtendedPosition realLast = positions.get(positions.indexOf(last));
-
-                realFirst.addAdjacentPositions(Direction.NORTH, realLast);
-                realLast.addAdjacentPositions(Direction.SOUTH, realFirst);
-            }
-        }
-    }
-
-    public void printBoard(TileType[][] grid) {
-        for (int y = 0; y < sizeY; y++) {
-            StringBuilder builder = new StringBuilder();
-            for (int x = 0; x < sizeX; x++) {
-                builder.append(grid[x][y].getSign());
-            }
-            System.out.println(builder);
         }
     }
 }

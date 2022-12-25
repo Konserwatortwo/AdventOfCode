@@ -12,12 +12,15 @@ public class Task22B extends AdventTask {
 
     @Override
     public List<String> perform(List<String> input) {
+        return perform(input, 50);
+    }
+
+    public List<String> perform(List<String> input, int sideSize) {
         int index = input.indexOf("");
-        Cube cube = new Cube(input.subList(0, index), 50);
+        Cube cube = new Cube(input.subList(0, index), sideSize);
         ExtendedPosition startingPosition = cube.getFirstPosition();
         Player player = new Player(startingPosition, input.get(index + 1));
         player.runInstructions();
         return List.of(player.calculatePassword() + "");
-//        return List.of(0 + "");
     }
 }

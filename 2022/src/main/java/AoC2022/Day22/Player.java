@@ -36,7 +36,6 @@ public class Player {
         }
     }
 
-
     private void move(int stepsNumber) {
         int steps = 0;
         while (position.canMoveInDirection(direction) && steps < stepsNumber) {
@@ -44,13 +43,15 @@ public class Player {
             Side oldSide = position.getSide();
             position = position.moveInDirection(direction);
             Side newSide = position.getSide();
-            if (null != oldSide && null != newSide && oldSide != newSide) {
+            if (shouldChangeDirection(oldSide, newSide)) {
                 direction = DirectionUtils.retrieveOpposite(newSide.getOtherSideDirection(oldSide));
             }
         }
-        System.out.println(position);
     }
 
+    private boolean shouldChangeDirection(Side oldSide, Side newSide) {
+        return null != oldSide && null != newSide && oldSide != newSide;
+    }
 
     public int calculatePassword() {
         int valueForDirection = switch (direction) {
@@ -62,5 +63,4 @@ public class Player {
         };
         return 1000 * (position.getY() + 1) + 4 * (position.getX() + 1) + valueForDirection;
     }
-
 }

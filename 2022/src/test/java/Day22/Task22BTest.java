@@ -1,6 +1,5 @@
 package Day22;
 
-import AoC2022.AdventTask;
 import AoC2022.Day22.Task22B;
 import org.junit.Assert;
 import org.junit.Test;
@@ -10,8 +9,7 @@ import java.util.List;
 
 public class Task22BTest {
 
-    private final AdventTask mockedTask = new Task22B();
-
+    private final Task22B mockedTask = new Task22B();
 
     @Test
     public void firstTest() {
@@ -33,7 +31,7 @@ public class Task22BTest {
         report.add("10R5L5R10L4R5L5");
 
         // Act
-        List<String> result = mockedTask.perform(report);
+        List<String> result = mockedTask.perform(report, 4);
 
         // Assert
         Assert.assertNotNull(result);

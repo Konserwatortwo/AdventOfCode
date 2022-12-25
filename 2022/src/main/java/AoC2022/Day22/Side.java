@@ -5,29 +5,13 @@ import AoC2022.common.Direction;
 import java.util.*;
 
 public class Side {
+    private final Map<Direction, Side> adjacentSides;
 
-    private ExtendedPosition position;
+    private final ExtendedPosition[][] grid;
 
-    private Map<Direction, Side> adjacentSides;
-
-    private ExtendedPosition[][] grid;
-
-    public Side(ExtendedPosition position, ExtendedPosition[][] grid) {
+    public Side(ExtendedPosition[][] grid) {
         this.grid = grid;
-        this.position = position;
         this.adjacentSides = new HashMap<>();
-    }
-
-    public ExtendedPosition[][] getGrid() {
-        return grid;
-    }
-
-    public ExtendedPosition getPosition() {
-        return position;
-    }
-
-    public Map<Direction, Side> getAdjacentSides() {
-        return adjacentSides;
     }
 
     public void addAdjacentSides(Direction direction, Side side) {
@@ -76,15 +60,7 @@ public class Side {
                 .orElseThrow(IllegalAccessError::new);
     }
 
-    public void assignBorderPoints() {
-        asssignPointsForDirection(Direction.NORTH);
-        asssignPointsForDirection(Direction.SOUTH);
-        asssignPointsForDirection(Direction.EAST);
-        asssignPointsForDirection(Direction.WEST);
-    }
-
-
-    public void asssignPointsForDirection(Direction direction) {
+    public void assignPointsForDirection(Direction direction) {
         Direction otherDirection = adjacentSides.get(direction).getOtherSideDirection(this);
         boolean isRightSide = direction == Direction.NORTH || direction == Direction.EAST;
         boolean isRightOtherSide = otherDirection == Direction.NORTH || otherDirection == Direction.EAST;
