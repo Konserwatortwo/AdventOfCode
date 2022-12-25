@@ -2,6 +2,7 @@ package AoC2022.Day22;
 
 import AoC2022.common.Direction;
 import AoC2022.common.DirectionUtils;
+import AoC2022.common.Position;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,8 +18,8 @@ public class Cube extends Board {
     public Cube(List<String> input, int sideSize) {
         super(input);
         this.sideSize = sideSize;
-        sides = createSides();
-        foldCube();
+        this.sides = createSides();
+        FoldingMechanism.fold(sides);
         assignBorderPoints();
     }
 
@@ -33,7 +34,7 @@ public class Cube extends Board {
                 int startingY = vertical * sideSize;
                 if (grid[startingX][startingY] != TileType.EMPTY) {
                     ExtendedPosition[][] sideGrid = createSideGrid(startingX, startingY);
-                    sides.add(new Side(createMapOfBorderPoints(sideGrid)));
+                    sides.add(new Side(Position.of(horizontal, vertical), createMapOfBorderPoints(sideGrid)));
                 }
             }
         }
@@ -68,25 +69,6 @@ public class Cube extends Board {
             default -> throw new IllegalStateException("Unexpected value: " + direction);
         };
         return IntStream.range(0, sideSize).mapToObj(mappingFunction::apply).collect(Collectors.toList());
-    }
-
-    private void foldCube() {
-        sides.get(0).addAllAdjacentSides(sides.get(1), sides.get(5), sides.get(3), sides.get(2));
-        sides.get(1).addAllAdjacentSides(sides.get(0), sides.get(2), sides.get(4), sides.get(5));
-        sides.get(2).addAllAdjacentSides(sides.get(0), sides.get(3), sides.get(4), sides.get(1));
-        sides.get(3).addAllAdjacentSides(sides.get(0), sides.get(5), sides.get(4), sides.get(2));
-        sides.get(4).addAllAdjacentSides(sides.get(3), sides.get(5), sides.get(1), sides.get(2));
-        sides.get(5).addAllAdjacentSides(sides.get(3), sides.get(0), sides.get(1), sides.get(4));
-
-
-//        sides.get(0).addAllAdjacentSides(sides.get(5), sides.get(1), sides.get(2), sides.get(3));
-//        sides.get(1).addAllAdjacentSides(sides.get(5), sides.get(4), sides.get(2), sides.get(0));
-//        sides.get(2).addAllAdjacentSides(sides.get(0), sides.get(1), sides.get(4), sides.get(3));
-//        sides.get(3).addAllAdjacentSides(sides.get(2), sides.get(4), sides.get(5), sides.get(0));
-//        sides.get(4).addAllAdjacentSides(sides.get(2), sides.get(1), sides.get(5), sides.get(3));
-//        sides.get(5).addAllAdjacentSides(sides.get(3), sides.get(4), sides.get(1), sides.get(0));
-
-        // TODO Fold
     }
 
     public void assignBorderPoints() {

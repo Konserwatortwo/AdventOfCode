@@ -56,7 +56,7 @@ import java.util.List;
 
 public class Application {
 
-    private static final AdventTask selectedTask = new Task21B();
+    private static final AdventTask selectedTask = new Task22B();
 
     private static final List<AdventTask> allTasks = new ArrayList<>();
 
@@ -106,7 +106,7 @@ public class Application {
         allTasks.add(new Task15A());
         allTasks.add(new Task15B());
 
-        allTasks.add(new Task16A()); // Need Ram
+        allTasks.add(new Task16A());
         allTasks.add(new Task16B());
 
         allTasks.add(new Task17A());
@@ -116,7 +116,7 @@ public class Application {
         allTasks.add(new Task18B());
 
         allTasks.add(new Task19A()); // Need Ram
-        allTasks.add(new Task19B());
+        allTasks.add(new Task19B()); // Need Ram
 
         allTasks.add(new Task20A());
         allTasks.add(new Task20B());

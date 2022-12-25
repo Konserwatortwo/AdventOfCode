@@ -37,7 +37,12 @@ public abstract class Board {
             char[] charArray = line.toCharArray();
             for (int x = 0; x < sizeX; x++) {
                 if (x >= firstSign && x < charArray.length) {
-                    grid[x][currentY] = TileType.determineType(charArray[x]);
+                    grid[x][currentY] = switch (charArray[x]) {
+                        case ' ' -> TileType.EMPTY;
+                        case '.' -> TileType.FREE;
+                        case '#' -> TileType.OCCUPIED;
+                        default -> throw new IllegalStateException("Unexpected value: " + charArray[x]);
+                    };
                 } else {
                     grid[x][currentY] = TileType.EMPTY;
                 }

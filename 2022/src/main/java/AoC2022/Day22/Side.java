@@ -1,16 +1,36 @@
 package AoC2022.Day22;
 
 import AoC2022.common.Direction;
+import AoC2022.common.DirectionUtils;
+import AoC2022.common.Position;
 
 import java.util.*;
 
 public class Side {
+    private final Position position;
     private final Map<Direction, Side> adjacentSides;
     private final Map<Direction, List<ExtendedPosition>> pointsOnBorder;
 
-    public Side(Map<Direction, List<ExtendedPosition>> pointsOnBorder) {
+    public Side(Position position, Map<Direction, List<ExtendedPosition>> pointsOnBorder) {
+        this.position = position;
         this.pointsOnBorder = pointsOnBorder;
         this.adjacentSides = new HashMap<>();
+    }
+
+    public Position getPosition() {
+        return position;
+    }
+
+    public Set<Direction> getAdjacentDirections() {
+        return adjacentSides.keySet();
+    }
+
+    public boolean containsAllAdjacent() {
+        return DirectionUtils.retrieveSimpleDirections().stream().allMatch(adjacentSides::containsKey);
+    }
+
+    public Side getAdjacentSide(Direction direction) {
+        return adjacentSides.get(direction);
     }
 
     public void addAdjacentSides(Direction direction, Side side) {
@@ -29,7 +49,7 @@ public class Side {
                 .filter(e -> e.getValue() == side)
                 .map(Map.Entry::getKey)
                 .findAny()
-                .orElseThrow(IllegalAccessError::new);
+                .orElse(null);
     }
 
     public void assignPointsForDirection(Direction direction) {
