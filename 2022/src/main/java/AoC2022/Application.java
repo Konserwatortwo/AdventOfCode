@@ -35,7 +35,6 @@ import AoC2022.Day23.Task23B;
 import AoC2022.Day24.Task24A;
 import AoC2022.Day24.Task24B;
 import AoC2022.Day25.Task25A;
-import AoC2022.Day25.Task25B;
 import AoC2022.Day3.Task3A;
 import AoC2022.Day3.Task3B;
 import AoC2022.Day4.Task4A;
@@ -57,7 +56,7 @@ import java.util.List;
 
 public class Application {
 
-    private static final AdventTask selectedTask = new Task24B();
+    private static final AdventTask selectedTask = new Task25A();
 
     private static final List<AdventTask> allTasks = new ArrayList<>();
 
@@ -135,7 +134,6 @@ public class Application {
         allTasks.add(new Task24B());
 
         allTasks.add(new Task25A());
-        allTasks.add(new Task25B());
     }
 
     public static void main(String[] args) {
