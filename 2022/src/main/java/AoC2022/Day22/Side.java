@@ -6,11 +6,10 @@ import java.util.*;
 
 public class Side {
     private final Map<Direction, Side> adjacentSides;
+    private final Map<Direction, List<ExtendedPosition>> pointsOnBorder;
 
-    private final ExtendedPosition[][] grid;
-
-    public Side(ExtendedPosition[][] grid) {
-        this.grid = grid;
+    public Side(Map<Direction, List<ExtendedPosition>> pointsOnBorder) {
+        this.pointsOnBorder = pointsOnBorder;
         this.adjacentSides = new HashMap<>();
     }
 
@@ -25,33 +24,6 @@ public class Side {
         adjacentSides.put(Direction.WEST, west);
     }
 
-    public List<ExtendedPosition> getPointsOnBorder(Direction direction) {
-        List<ExtendedPosition> result = new ArrayList<>();
-        switch (direction) {
-            case NORTH -> {
-                for (int x = 0; x < grid.length; x++) {
-                    result.add(grid[x][0]);
-                }
-            }
-            case SOUTH -> {
-                for (int x = 0; x < grid.length; x++) {
-                    result.add(grid[x][grid.length - 1]);
-                }
-            }
-            case EAST -> {
-                for (int y = 0; y < grid.length; y++) {
-                    result.add(grid[grid.length - 1][y]);
-                }
-            }
-            case WEST -> {
-                for (int y = 0; y < grid.length; y++) {
-                    result.add(grid[0][y]);
-                }
-            }
-        }
-        return result;
-    }
-
     public Direction getOtherSideDirection(Side side) {
         return adjacentSides.entrySet().stream()
                 .filter(e -> e.getValue() == side)
@@ -61,15 +33,12 @@ public class Side {
     }
 
     public void assignPointsForDirection(Direction direction) {
-        Direction otherDirection = adjacentSides.get(direction).getOtherSideDirection(this);
-        boolean isRightSide = direction == Direction.NORTH || direction == Direction.EAST;
-        boolean isRightOtherSide = otherDirection == Direction.NORTH || otherDirection == Direction.EAST;
-        boolean shouldReversOrder = isRightSide == isRightOtherSide;
+        Side otherSide = adjacentSides.get(direction);
+        Direction otherDirection = otherSide.getOtherSideDirection(this);
+        List<ExtendedPosition> borderPositions = pointsOnBorder.get(direction);
+        List<ExtendedPosition> otherBorderPositions = new ArrayList<>(otherSide.pointsOnBorder.get(otherDirection));
 
-        List<ExtendedPosition> borderPositions = getPointsOnBorder(direction);
-        List<ExtendedPosition> otherBorderPositions = adjacentSides.get(direction).getPointsOnBorder(otherDirection);
-
-        if (shouldReversOrder) {
+        if (shouldReverseOrder(direction, otherDirection)) {
             Collections.reverse(otherBorderPositions);
         }
 
@@ -81,5 +50,10 @@ public class Side {
                 borderPosition.setSide(this);
             }
         }
+    }
+
+    private boolean shouldReverseOrder(Direction direction, Direction otherDirection) {
+        Set<Direction> rightOrderDirections = Set.of(Direction.NORTH, Direction.EAST);
+        return rightOrderDirections.contains(direction) == rightOrderDirections.contains(otherDirection);
     }
 }

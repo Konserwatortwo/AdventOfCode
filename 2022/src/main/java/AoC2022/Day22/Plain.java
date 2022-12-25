@@ -8,11 +8,11 @@ public class Plain extends Board {
 
     public Plain(List<String> input) {
         super(input);
-        createPortalVertical(grid, positions);
-        createPortalHorizontal(grid, positions);
+        createPortalVertical();
+        createPortalHorizontal();
     }
 
-    private void createPortalVertical(TileType[][] grid, List<ExtendedPosition> positions) {
+    private void createPortalVertical() {
         for (int y = 0; y < sizeY; y++) {
 
             int firstIndex = 0;
@@ -38,7 +38,7 @@ public class Plain extends Board {
         }
     }
 
-    private void createPortalHorizontal(TileType[][] grid, List<ExtendedPosition> positions) {
+    private void createPortalHorizontal() {
         for (int x = 0; x < sizeX; x++) {
 
             int firstIndex = 0;
