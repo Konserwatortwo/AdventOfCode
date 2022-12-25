@@ -38,11 +38,16 @@ public class Location {
 
     private int determineMove(int actual, int expected) {
         int current = actual;
-        if(actual < expected) {
+        if (actual < expected) {
             current++;
-        } else if(actual > expected) {
+        } else if (actual > expected) {
             current--;
         }
         return current;
+    }
+
+    @Override
+    public String toString() {
+        return x + "-" + y;
     }
 }

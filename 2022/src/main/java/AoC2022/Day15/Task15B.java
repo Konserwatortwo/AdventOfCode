@@ -24,7 +24,7 @@ public class Task15B extends AdventTask {
         while (null == position && level < limit) {
             List<Range> ranges = device.retrieveRangeForLevelWithLimit(level, limit);
             if (ranges.size() == 2) {
-                position = new Position(ranges.get(0).getMax() + 1, level);
+                position = Position.of(ranges.get(0).getMax() + 1, level);
                 if (device.isPositionBeacon(position)) {
                     position = null;
                 }

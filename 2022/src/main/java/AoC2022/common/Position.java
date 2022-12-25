@@ -6,7 +6,7 @@ public class Position {
     private final int coordinateX;
     private final int coordinateY;
 
-    public Position(int coordinateX, int coordinateY) {
+    protected Position(int coordinateX, int coordinateY) {
         this.coordinateX = coordinateX;
         this.coordinateY = coordinateY;
     }
