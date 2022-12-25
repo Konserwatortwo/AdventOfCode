@@ -3,6 +3,7 @@ package AoC2022.Day21;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class MonkeyHelper {
     public static final String ROOT_MONKEY_NAME = "root";
@@ -23,13 +24,12 @@ public class MonkeyHelper {
         Operation operation = Operation.determineOperation(constructionElements[1]);
         Monkey firstMonkey = createMonkey(constructionElements[0], monkeyNamesMap);
         Monkey secondMonkey = createMonkey(constructionElements[2], monkeyNamesMap);
-        boolean isHumanDependant = determineHumanDependency(firstMonkey, secondMonkey);
+        boolean isHumanDependant = Stream.of(firstMonkey, secondMonkey).anyMatch(MonkeyHelper::checkIfIsHumanDependant);
         return new OperationMonkey(monkeyName, operation, firstMonkey, secondMonkey, isHumanDependant);
     }
 
-    private static boolean determineHumanDependency(Monkey firstMonkey, Monkey secondMonkey) {
-        return HUMAN_MONKEY_NAME.equals(firstMonkey.getName()) || firstMonkey.isHumanDependant()
-                || HUMAN_MONKEY_NAME.equals(secondMonkey.getName()) || secondMonkey.isHumanDependant();
+    private static boolean checkIfIsHumanDependant(Monkey monkey) {
+        return HUMAN_MONKEY_NAME.equals(monkey.getName()) || monkey.isHumanDependant();
     }
 
     public static long calculateMonkeyResult(Monkey currentMonkey) {
@@ -43,21 +43,17 @@ public class MonkeyHelper {
     }
 
     public static long reverseEngineering(Monkey currentMonkey, Long value) {
-        if (HUMAN_MONKEY_NAME.equals(currentMonkey.getName())) {
-            return value;
+        if (currentMonkey instanceof OperationMonkey) {
+            OperationMonkey operationMonkey = (OperationMonkey) currentMonkey;
+            if (checkIfIsHumanDependant(operationMonkey.getFirstMonkey())) {
+                long reverseValue = operationMonkey.getOperation().performReverseOperationLeft(value, operationMonkey);
+                return reverseEngineering(operationMonkey.getFirstMonkey(), reverseValue);
+            }
+            if (checkIfIsHumanDependant(operationMonkey.getSecondMonkey())) {
+                long reverseValue = operationMonkey.getOperation().performReverseOperationRight(value, operationMonkey);
+                return reverseEngineering(operationMonkey.getSecondMonkey(), reverseValue);
+            }
         }
-
-        OperationMonkey operationMonkey = (OperationMonkey) currentMonkey;
-        if (operationMonkey.getFirstMonkey().isHumanDependant() || HUMAN_MONKEY_NAME.equals(operationMonkey.getFirstMonkey().getName())) {
-            long reverseValue = operationMonkey.reverseOperation(value, operationMonkey.getSecondMonkey().getResult());
-            return reverseEngineering(operationMonkey.getFirstMonkey(), reverseValue);
-        }
-
-        if (operationMonkey.getSecondMonkey().isHumanDependant() || HUMAN_MONKEY_NAME.equals(operationMonkey.getSecondMonkey().getName())) {
-            long reverseValue = operationMonkey.reverseOperation(value, operationMonkey.getFirstMonkey().getResult());
-            return reverseEngineering(operationMonkey.getSecondMonkey(), reverseValue);
-        }
-
-        throw new IllegalStateException();
+        return value;
     }
 }

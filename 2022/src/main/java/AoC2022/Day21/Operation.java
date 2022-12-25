@@ -3,15 +3,22 @@ package AoC2022.Day21;
 import java.util.function.BiFunction;
 
 public enum Operation {
-    ADD((x, y) -> x + y),
-    SUBTRACT((x, y) -> x - y),
-    MULTIPLY((x, y) -> x * y),
-    DIVIDE((x, y) -> x / y);
+    ADD((x, y) -> x + y, (x, y) -> x - y, (x, y) -> x - y),
+    SUBTRACT((x, y) -> x - y, (x, y) -> x + y, (x, y) -> y - x),
+    MULTIPLY((x, y) -> x * y, (x, y) -> x / y, (x, y) -> x / y),
+    DIVIDE((x, y) -> x / y, (x, y) -> x * y, (x, y) -> y / x);
 
     private final BiFunction<Long, Long, Long> operation;
+    private final BiFunction<Long, Long, Long> reverseOperationLeft;
+    private final BiFunction<Long, Long, Long> reverseOperationRight;
 
-    Operation(BiFunction<Long, Long, Long> operation) {
+
+    Operation(BiFunction<Long, Long, Long> operation,
+              BiFunction<Long, Long, Long> reverseOperationLeft,
+              BiFunction<Long, Long, Long> reverseOperationRight) {
         this.operation = operation;
+        this.reverseOperationLeft = reverseOperationLeft;
+        this.reverseOperationRight = reverseOperationRight;
     }
 
     public Long perform(Long first, Long second) {
@@ -28,12 +35,11 @@ public enum Operation {
         };
     }
 
-    public static Operation determineReverseOperation(Operation operation) {
-        return switch (operation) {
-            case ADD -> Operation.SUBTRACT;
-            case SUBTRACT -> Operation.ADD;
-            case MULTIPLY -> Operation.DIVIDE;
-            case DIVIDE -> Operation.MULTIPLY;
-        };
+    public Long performReverseOperationLeft(Long first, OperationMonkey operationMonkey) {
+        return reverseOperationLeft.apply(first, operationMonkey.getSecondMonkey().getResult());
+    }
+
+    public Long performReverseOperationRight(Long first, OperationMonkey operationMonkey) {
+        return reverseOperationRight.apply(first, operationMonkey.getFirstMonkey().getResult());
     }
 }
