@@ -56,7 +56,9 @@ import java.util.List;
 
 public class Application {
 
-    private static final AdventTask selectedTask = new Task22B();
+    public static final String YEAR = "2022";
+    private static final boolean performAllTasks = false;
+    private static final AdventTask selectedTask = new Task23B();
 
     private static final List<AdventTask> allTasks = new ArrayList<>();
 
@@ -138,15 +140,14 @@ public class Application {
 
     public static void main(String[] args) {
         System.out.println(new File(".").getAbsolutePath());
-        System.out.println("Witaj w Advent Of Code 2022 :::");
-
+        System.out.println("Witaj w Advent Of Code " + YEAR +  " :::");
         long start = System.nanoTime();
-        if (selectedTask != null) {
-            selectedTask.execute();
-        } else {
+        if (performAllTasks) {
             for (AdventTask allTask : allTasks) {
                 allTask.execute();
             }
+        } else {
+            selectedTask.execute();
         }
         long end = System.nanoTime() - start;
         System.out.println("Time elapsed: " + (end / 1000000) + " ms");

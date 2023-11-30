@@ -62,6 +62,7 @@ public abstract class AdventTask {
 
     private String retrievePathToResource(String resourcePrefix) {
         StringJoiner joiner = new StringJoiner(DIRECTORY_SEPARATOR);
+        joiner.add(Application.YEAR);
         joiner.add(PATH_TO_RESOURCES);
         joiner.add(resourcePrefix);
         joiner.add(daySuffix);
