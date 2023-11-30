@@ -12,6 +12,7 @@ public class Task1A extends AdventTask {
 
     @Override
     public List<String> perform(List<String> input) {
+        int alfa = 120;
         int max = 0;
         int sum = 0;
         for (String line : input) {
