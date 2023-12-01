@@ -58,7 +58,7 @@ public class Application {
 
     public static final String YEAR = "2023";
     private static final boolean performAllTasks = false;
-    private static final AdventTask selectedTask = new Task1A();
+    private static final AdventTask selectedTask = new Task2A();
     private static final List<AdventTask> allTasks = new ArrayList<>();
 
     static {
@@ -139,7 +139,7 @@ public class Application {
 
     public static void main(String[] args) {
         System.out.println(new File(".").getAbsolutePath());
-        System.out.println("Witaj w Advent Of Code " + YEAR +  " :::");
+        System.out.println("Witaj w Advent Of Code " + YEAR + " :::");
 
         long start = System.nanoTime();
         if (performAllTasks) {
