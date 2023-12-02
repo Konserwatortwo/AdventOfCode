@@ -56,7 +56,7 @@ import java.util.List;
 
 public class Application {
 
-    public static final String YEAR = "2035";
+    public static final String YEAR = "2020";
     private static final boolean performAllTasks = false;
     private static final AdventTask selectedTask = new Task1A();
 
