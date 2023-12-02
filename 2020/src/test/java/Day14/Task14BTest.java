@@ -1,6 +1,6 @@
 package Day14;
 
-import AoC2023.Day14.Task14B;
+import AoC2020.Day14.Task14B;
 import org.junit.Assert;
 import org.junit.Test;
 

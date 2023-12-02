@@ -1,7 +1,7 @@
 package Day5;
 
-import AoC2023.AdventTask;
-import AoC2023.Day5.Task5A;
+import AoC2020.AdventTask;
+import AoC2020.Day5.Task5A;
 import org.junit.Assert;
 import org.junit.Test;
 
