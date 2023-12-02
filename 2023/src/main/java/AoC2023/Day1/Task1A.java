@@ -1,10 +1,10 @@
 package AoC2023.Day1;
 
 import AoC2023.AdventTask;
-import org.apache.commons.lang3.CharUtils;
-import org.apache.commons.lang3.StringUtils;
 
 import java.util.List;
+
+import static AoC2023.AdventTaskUtils.answerAs;
 
 public class Task1A extends AdventTask {
 
@@ -27,9 +27,9 @@ public class Task1A extends AdventTask {
                     lastDigit = sign;
                 }
             }
-           sum += Integer.parseInt(firstDigit + "" + lastDigit);
+            sum += Integer.parseInt(firstDigit + "" + lastDigit);
             firstDigit = ' ';
         }
-        return List.of(sum+"");
+        return answerAs(sum);
     }
 }

@@ -7,6 +7,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.function.BiFunction;
 
+import static AoC2023.AdventTaskUtils.answerAs;
+
 public class Task1B extends AdventTask {
 
     private enum Numbers {
@@ -40,7 +42,7 @@ public class Task1B extends AdventTask {
             char lastDigit = findDigit(StringUtils.reverse(line), (x, y) -> y + x);
             sum += Integer.parseInt(firstDigit + "" + lastDigit);
         }
-        return List.of(sum + "");
+        return answerAs(sum);
     }
 
     private char findDigit(String line, BiFunction<String, Character, String> applyingNewSing) {
