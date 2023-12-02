@@ -30,9 +30,9 @@ public class Grid {
 
     public void setCubesInRange(Cuboid cuboid) {
         if (!isRangeOutSideGrid(cuboid)) {
-            for (int x = cuboid.getFrom(Coordinate.X); x <= cuboid.getTo(Coordinate.X); x++) {
-                for (int y = cuboid.getFrom(Coordinate.Y); y <= cuboid.getTo(Coordinate.Y); y++) {
-                    for (int z = cuboid.getFrom(Coordinate.Z); z <= cuboid.getTo(Coordinate.Z); z++) {
+            for (int x = cuboid.getFrom(Coordinate.X); x < cuboid.getTo(Coordinate.X); x++) {
+                for (int y = cuboid.getFrom(Coordinate.Y); y < cuboid.getTo(Coordinate.Y); y++) {
+                    for (int z = cuboid.getFrom(Coordinate.Z); z < cuboid.getTo(Coordinate.Z); z++) {
                         if (positionInGrid(x, y, z) && getCubeOnPosition(x, y, z) != cuboid.isOn()) {
                             setCubeOnPosition(cuboid.isOn(), x, y, z);
                         }
