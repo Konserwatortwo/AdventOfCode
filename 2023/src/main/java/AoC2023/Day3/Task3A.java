@@ -4,6 +4,8 @@ import AoC2023.AdventTask;
 
 import java.util.List;
 
+import static AoC2023.AdventTaskUtils.answerAs;
+
 public class Task3A extends AdventTask {
 
     public Task3A() {
@@ -12,6 +14,7 @@ public class Task3A extends AdventTask {
 
     @Override
     public List<String> perform(List<String> input) {
-        return null;
+        EngineGrid engineGrid = new EngineGrid(input);
+        return answerAs(engineGrid.sumOfAllNumbersNearSymbol());
     }
 }
