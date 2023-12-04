@@ -4,6 +4,8 @@ import AoC2023.AdventTask;
 
 import java.util.List;
 
+import static AoC2023.AdventTaskUtils.answerAs;
+
 public class Task4A extends AdventTask {
 
     public Task4A() {
@@ -12,6 +14,9 @@ public class Task4A extends AdventTask {
 
     @Override
     public List<String> perform(List<String> input) {
-        return null;
+        return answerAs(input.stream()
+                .map(Scratchcard::new)
+                .mapToInt(Scratchcard::value)
+                .sum());
     }
 }
