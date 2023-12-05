@@ -14,6 +14,7 @@ public class Task5A extends AdventTask {
 
     @Override
     public List<String> perform(List<String> input) {
-        return answerAs(24000);
+        Almanac almanac = new Almanac(input);
+        return answerAs(almanac.lowestLocationForSingleSeeds());
     }
 }
