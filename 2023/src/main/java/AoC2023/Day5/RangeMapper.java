@@ -1,5 +1,6 @@
 package AoC2023.Day5;
 
+import AoC2023.AdventTaskUtils;
 import io.vavr.Tuple;
 import io.vavr.Tuple3;
 import lombok.AccessLevel;
@@ -7,9 +8,7 @@ import lombok.AllArgsConstructor;
 import lombok.ToString;
 import lombok.experimental.FieldDefaults;
 
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
@@ -20,9 +19,7 @@ class RangeMapper implements Comparable<RangeMapper> {
     long change;
 
     public static RangeMapper of(String inputValue) {
-        List<Long> elements = Arrays.stream(inputValue.split(" "))
-                .map(Long::parseLong)
-                .collect(Collectors.toList());
+        List<Long> elements = AdventTaskUtils.splitAndParseToLong(inputValue);
         return new RangeMapper(
                 Range.of(elements.get(1), elements.get(1) + elements.get(2)),
                 elements.get(0) - elements.get(1)
@@ -49,7 +46,6 @@ class RangeMapper implements Comparable<RangeMapper> {
         Tuple3<Range, Range, Range> splitResult = source.split(otherRange);
         return Tuple.of(splitResult._1, map(splitResult._2), splitResult._3);
     }
-
 
     @Override
     public int compareTo(RangeMapper other) {

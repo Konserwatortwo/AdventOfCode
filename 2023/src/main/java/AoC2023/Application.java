@@ -57,7 +57,7 @@ import java.util.List;
 public class Application {
 
     public static final String YEAR = "2023";
-    private static final boolean performAllTasks = false;
+    private static final boolean performAllTasks = true;
     private static final AdventTask selectedTask = new Task6A();
     private static final List<AdventTask> allTasks = new ArrayList<>();
 

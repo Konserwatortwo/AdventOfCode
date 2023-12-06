@@ -3,11 +3,10 @@ package AoC2023.Day4;
 import lombok.AccessLevel;
 import lombok.ToString;
 import lombok.experimental.FieldDefaults;
-import org.apache.commons.lang3.StringUtils;
 
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
+
+import static AoC2023.AdventTaskUtils.splitAndParseToInt;
 
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 @ToString
@@ -18,15 +17,8 @@ class Scratchcard {
 
     public Scratchcard(String inputLine) {
         String[] elements = inputLine.split(":")[1].split("\\|");
-        this.winningNumbers = parseNumbers(elements[0]);
-        this.cardsNumbers = parseNumbers(elements[1]);
-    }
-
-    private List<Integer> parseNumbers(String numbers) {
-        return Arrays.stream(numbers.split(" "))
-                .filter(StringUtils::isNotEmpty)
-                .map(Integer::parseInt)
-                .collect(Collectors.toList());
+        this.winningNumbers = splitAndParseToInt(elements[0]);
+        this.cardsNumbers = splitAndParseToInt(elements[1]);
     }
 
     public int numberOfWinningCards() {

@@ -1,10 +1,14 @@
 package AoC2023.Day5;
 
+import AoC2023.AdventTaskUtils;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 import org.apache.commons.lang3.StringUtils;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 import java.util.stream.Collectors;
 
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
@@ -14,13 +18,7 @@ class Almanac {
     List<AlmanacMapper> mappers;
 
     public Almanac(List<String> inputValue) {
-        seeds = Arrays.stream(inputValue.get(0)
-                        .replace("seeds: ", "")
-                        .split(" ")
-                )
-                .map(Long::parseLong)
-                .collect(Collectors.toList());
-
+        seeds = AdventTaskUtils.splitAndParseToLong(inputValue.get(0), null, "seeds:");
         mappers = new ArrayList<>();
         List<String> linesForMapper = new ArrayList<>();
         for (int i = 2; i < inputValue.size(); i++) {
@@ -34,7 +32,7 @@ class Almanac {
         }
         mappers.add(new AlmanacMapper(linesForMapper));
     }
-    
+
     public long lowestLocationForSingleSeeds() {
         return seeds.stream()
                 .mapToLong(this::map)
