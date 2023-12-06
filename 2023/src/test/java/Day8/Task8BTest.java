@@ -1,4 +1,4 @@
-package Day6.Day8;
+package Day8;
 
 import AoC2023.AdventTask;
 import AoC2023.Day8.Task8B;

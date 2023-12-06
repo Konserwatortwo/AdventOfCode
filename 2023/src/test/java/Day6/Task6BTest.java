@@ -16,7 +16,8 @@ public class Task6BTest {
     public void firstTest() {
         // Arrange
         List<String> report = new ArrayList<>();
-        report.add("1000");
+        report.add("Time:      7  15   30");
+        report.add("Distance:  9  40  200");
 
         // Act
         List<String> result = mockedTask.perform(report);
@@ -24,6 +25,22 @@ public class Task6BTest {
         // Assert
         Assert.assertNotNull(result);
         Assert.assertEquals(1, result.size());
-        Assert.assertEquals("24000", result.get(0));
+        Assert.assertEquals("71503", result.get(0));
+    }
+
+    @Test
+    public void secondTest() {
+        // Arrange
+        List<String> report = new ArrayList<>();
+        report.add("Time:        48     98     90     83");
+        report.add("Distance:   390   1103   1112   1360");
+
+        // Act
+        List<String> result = mockedTask.perform(report);
+
+        // Assert
+        Assert.assertNotNull(result);
+        Assert.assertEquals(1, result.size());
+        Assert.assertEquals("28973936", result.get(0));
     }
 }
