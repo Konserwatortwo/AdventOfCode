@@ -68,11 +68,19 @@ public abstract class AdventTaskUtils {
                 .collect(Collectors.toList());
     }
 
+    public static List<String> splitOnSeparatorWithoutWhitespaces(String input) {
+        return splitOnSeparatorWithoutWhitespaces(input, null);
+    }
+
     public static List<String> splitOnSeparatorWithoutWhitespaces(String input, String separator, String... wordsToRemove) {
         return splitOnSeparator(input, separator, wordsToRemove).stream()
                 .map(StringUtils::deleteWhitespace)
                 .filter(StringUtils::isNotEmpty)
                 .collect(Collectors.toList());
+    }
+
+    public static List<String> splitOnSeparator(String input) {
+        return splitOnSeparator(input, null);
     }
 
     public static List<String> splitOnSeparator(String input, String separator, String... wordsToRemove) {
