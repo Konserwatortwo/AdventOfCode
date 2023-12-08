@@ -16,7 +16,16 @@ public class Task8BTest {
     public void firstTest() {
         // Arrange
         List<String> report = new ArrayList<>();
-        report.add("1000");
+        report.add("LR");
+        report.add("");
+        report.add("11A = (11B, XXX)");
+        report.add("11B = (XXX, 11Z)");
+        report.add("11Z = (11B, XXX)");
+        report.add("22A = (22B, XXX)");
+        report.add("22B = (22C, 22C)");
+        report.add("22C = (22Z, 22Z)");
+        report.add("22Z = (22B, 22B)");
+        report.add("XXX = (XXX, XXX)");
 
         // Act
         List<String> result = mockedTask.perform(report);
@@ -24,6 +33,6 @@ public class Task8BTest {
         // Assert
         Assert.assertNotNull(result);
         Assert.assertEquals(1, result.size());
-        Assert.assertEquals("24000", result.get(0));
+        Assert.assertEquals("6", result.get(0));
     }
 }
