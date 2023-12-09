@@ -16,7 +16,9 @@ public class Task9ATest {
     public void firstTest() {
         // Arrange
         List<String> report = new ArrayList<>();
-        report.add("1000");
+        report.add("0 3 6 9 12 15");
+        report.add("1 3 6 10 15 21");
+        report.add("10 13 16 21 30 45");
 
         // Act
         List<String> result = mockedTask.perform(report);
@@ -24,6 +26,6 @@ public class Task9ATest {
         // Assert
         Assert.assertNotNull(result);
         Assert.assertEquals(1, result.size());
-        Assert.assertEquals("24000", result.get(0));
+        Assert.assertEquals("114", result.get(0));
     }
 }
