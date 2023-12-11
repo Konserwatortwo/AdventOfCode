@@ -1,9 +1,10 @@
 package AoC2023.Day11;
 
 import AoC2023.AdventTask;
-import AoC2023.AdventTaskUtils;
 
 import java.util.List;
+
+import static AoC2023.AdventTaskUtils.answerAs;
 
 public class Task11B extends AdventTask {
 
@@ -13,6 +14,6 @@ public class Task11B extends AdventTask {
 
     @Override
     public List<String> perform(List<String> input) {
-        return AdventTaskUtils.answerAs(24000);
+        return answerAs(Grid.of(input).calculateDistanceBetweenGalaxies(1000000));
     }
 }
