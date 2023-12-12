@@ -7,6 +7,7 @@ import lombok.ToString;
 import lombok.experimental.FieldDefaults;
 import org.apache.commons.lang3.StringUtils;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -14,33 +15,29 @@ import java.util.List;
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 @EqualsAndHashCode
 @ToString
-public class Phase {
+class Phase {
+
+    static HashMap<Phase, Long> cache = new HashMap<>();
 
     String inputValue;
     List<Integer> controlNumbers;
-    int numberIdx;
     int length;
-    @EqualsAndHashCode.Exclude
-    @ToString.Exclude
-    HashMap<Phase, Long> cache;
 
     public static Phase of(String inputValue, List<Integer> controlNumbers) {
-        return new Phase(inputValue + ".", controlNumbers, 0, 0, new HashMap<>());
+        return new Phase(inputValue + ".", controlNumbers, 0);
     }
 
-    public static Phase of(Phase phase, int numberIdx, int length) {
-        return new Phase(
-                phase.inputValue.substring(1),
-                phase.controlNumbers,
-                numberIdx,
-                length,
-                phase.cache
-        );
+    public static Phase of(Phase phase, int length, boolean removeNumber) {
+        List<Integer> controlNumbers = new ArrayList<>(phase.controlNumbers);
+        if (removeNumber) {
+            controlNumbers.remove(0);
+        }
+        return new Phase(phase.inputValue.substring(1), controlNumbers, length);
     }
 
     public long countPhases() {
         if (StringUtils.isEmpty(inputValue)) {
-            return length == 0 && numberIdx == controlNumbers.size() ? 1 : 0;
+            return length == 0 && controlNumbers.isEmpty() ? 1 : 0;
         }
         if (!cache.containsKey(this)) {
             cache.put(this, determineValue());
@@ -50,25 +47,27 @@ public class Phase {
 
     private long determineValue() {
         return switch (inputValue.charAt(0)) {
-            case '#' -> stepSpring();
-            case '.' -> stepEmpty();
-            case '?' -> stepSpring() + stepEmpty();
+            case '#' -> addSpring();
+            case '.' -> separateSprings();
+            case '?' -> addSpring() + separateSprings();
             default -> throw new IllegalStateException("Unexpected value: " + inputValue.charAt(0));
         };
     }
 
-    private long stepSpring() {
-        return numberIdx == controlNumbers.size() || length >= controlNumbers.get(numberIdx)
-                ? 0
-                : Phase.of(this, numberIdx, length + 1).countPhases();
+    private long addSpring() {
+        if (controlNumbers.isEmpty() || length >= controlNumbers.get(0)) {
+            return 0;
+        }
+        return Phase.of(this, length + 1, false).countPhases();
     }
 
-    private long stepEmpty() {
+    private long separateSprings() {
         if (length == 0) {
-            return Phase.of(this, numberIdx, 0).countPhases();
+            return Phase.of(this, 0, false).countPhases();
         }
-        return controlNumbers.get(numberIdx) != length
-                ? 0
-                : Phase.of(this, numberIdx + 1, 0).countPhases();
+        if (controlNumbers.get(0) != length) {
+            return 0;
+        }
+        return Phase.of(this, 0, true).countPhases();
     }
 }
