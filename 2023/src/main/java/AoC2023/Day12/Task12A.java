@@ -13,6 +13,9 @@ public class Task12A extends AdventTask {
 
     @Override
     public List<String> perform(List<String> input) {
-        return AdventTaskUtils.answerAs(24000);
+        return AdventTaskUtils.answerAs(input.stream()
+                .map(Row::of)
+                .mapToLong(Row::calculateNumberOfPhases)
+                .sum());
     }
 }
