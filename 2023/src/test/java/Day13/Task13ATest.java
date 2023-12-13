@@ -16,7 +16,13 @@ public class Task13ATest {
     public void firstTest() {
         // Arrange
         List<String> report = new ArrayList<>();
-        report.add("1000");
+        report.add("#.##..##.");
+        report.add("..#.##.#.");
+        report.add("##......#");
+        report.add("##......#");
+        report.add("..#.##.#.");
+        report.add("..##..##.");
+        report.add("#.#.##.#.");
 
         // Act
         List<String> result = mockedTask.perform(report);
@@ -24,6 +30,56 @@ public class Task13ATest {
         // Assert
         Assert.assertNotNull(result);
         Assert.assertEquals(1, result.size());
-        Assert.assertEquals("24000", result.get(0));
+        Assert.assertEquals("5", result.get(0));
+    }
+
+    @Test
+    public void secondTest() {
+        // Arrange
+        List<String> report = new ArrayList<>();
+        report.add("#...##..#");
+        report.add("#....#..#");
+        report.add("..##..###");
+        report.add("#####.##.");
+        report.add("#####.##.");
+        report.add("..##..###");
+        report.add("#....#..#");
+
+        // Act
+        List<String> result = mockedTask.perform(report);
+
+        // Assert
+        Assert.assertNotNull(result);
+        Assert.assertEquals(1, result.size());
+        Assert.assertEquals("400", result.get(0));
+    }
+
+    @Test
+    public void thirdTest() {
+        // Arrange
+        List<String> report = new ArrayList<>();
+        report.add("#.##..##.");
+        report.add("..#.##.#.");
+        report.add("##......#");
+        report.add("##......#");
+        report.add("..#.##.#.");
+        report.add("..##..##.");
+        report.add("#.#.##.#.");
+        report.add("");
+        report.add("#...##..#");
+        report.add("#....#..#");
+        report.add("..##..###");
+        report.add("#####.##.");
+        report.add("#####.##.");
+        report.add("..##..###");
+        report.add("#....#..#");
+
+        // Act
+        List<String> result = mockedTask.perform(report);
+
+        // Assert
+        Assert.assertNotNull(result);
+        Assert.assertEquals(1, result.size());
+        Assert.assertEquals("405", result.get(0));
     }
 }
