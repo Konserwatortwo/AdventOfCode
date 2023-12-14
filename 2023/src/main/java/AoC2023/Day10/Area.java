@@ -1,26 +1,18 @@
 package AoC2023.Day10;
 
-import lombok.AccessLevel;
-import lombok.experimental.FieldDefaults;
+import AoC2023.shared.Grid;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-@FieldDefaults(level = AccessLevel.PROTECTED, makeFinal = true)
-class Grid {
+class Area extends Grid {
 
-    char[][] grid;
-    int maxX;
-    int maxY;
-
-    private Grid(char[][] grid) {
-        this.grid = grid;
-        this.maxX = grid[0].length;
-        this.maxY = grid.length;
+    private Area(char[][] grid) {
+        super(grid);
     }
 
-    public static Grid of(List<String> inputList) {
+    public static Area of(List<String> inputList) {
         assert inputList.size() > 1;
         char[][] createdGrid = new char[inputList.size() + 2][inputList.get(0).length() + 2];
         Arrays.fill(createdGrid[0], '0');
@@ -31,7 +23,15 @@ class Grid {
             createdGrid[y + 1][lineArray.length + 1] = '0';
             System.arraycopy(lineArray, 0, createdGrid[y + 1], 1, lineArray.length);
         }
-        return new Grid(createdGrid);
+        return new Area(createdGrid);
+    }
+
+    public char valueAt(Position position) {
+        return valueAt(position.getX(), position.getY());
+    }
+
+    public void setValueAt(Position position, char value) {
+        setValueAt(position.getX(), position.getY(), value);
     }
 
     public List<Position> calculateLoop() {
@@ -49,10 +49,10 @@ class Grid {
         List<Position> loop = new ArrayList<>();
         do {
             currentPosition = currentDirection.determineNextPosition(currentPosition);
-            if (!currentPosition.isInRange(maxX, maxY)) {
+            if (!isInGrid(currentPosition.getX(), currentPosition.getY())) {
                 return List.of();
             }
-            currentDirection = currentDirection.determineNextDirection(grid[currentPosition.getY()][currentPosition.getX()]);
+            currentDirection = currentDirection.determineNextDirection(valueAt(currentPosition));
             if (null == currentDirection) {
                 return List.of();
             }
@@ -64,7 +64,7 @@ class Grid {
     private Position findStartingPosition() {
         for (int x = 0; x < maxX; x++) {
             for (int y = 0; y < maxY; y++) {
-                if ('S' == grid[y][x]) {
+                if ('S' == valueAt(x, y)) {
                     return Position.of(x, y);
                 }
             }
@@ -72,42 +72,42 @@ class Grid {
         throw new IllegalStateException("Starting Position not found");
     }
 
-    public Grid extendGrid() {
-        Grid extendedGrid = generateExtendedGridFromCurrent();
-        extendedGrid.extendTunnels();
-        return extendedGrid;
+    public Area extendArea() {
+        Area extendedArea = generateExtendedAreaFromCurrent();
+        extendedArea.extendTunnels();
+        return extendedArea;
     }
 
-    private Grid generateExtendedGridFromCurrent() {
-        char[][] extendedGrid = new char[maxY * 2 - 1][grid[0].length * 2 - 1];
+    private Area generateExtendedAreaFromCurrent() {
+        char[][] extendedArea = new char[maxY * 2 - 1][maxX * 2 - 1];
         for (int y = 1; y < maxY; y++) {
-            Arrays.fill(extendedGrid[y * 2 - 1], 'x');
-            Arrays.fill(extendedGrid[y * 2], 'x');
-            extendedGrid[y * 2 - 1][0] = '0';
-            extendedGrid[y * 2 - 1][extendedGrid[0].length - 1] = '0';
+            Arrays.fill(extendedArea[y * 2 - 1], 'x');
+            Arrays.fill(extendedArea[y * 2], 'x');
+            extendedArea[y * 2 - 1][0] = '0';
+            extendedArea[y * 2 - 1][extendedArea[0].length - 1] = '0';
             for (int x = 0; x < maxX; x++) {
-                extendedGrid[y * 2][x * 2] = grid[y][x];
+                extendedArea[y * 2][x * 2] = valueAt(x, y);
             }
         }
-        Arrays.fill(extendedGrid[0], '0');
-        Arrays.fill(extendedGrid[extendedGrid.length - 1], '0');
-        return new Grid(extendedGrid);
+        Arrays.fill(extendedArea[0], '0');
+        Arrays.fill(extendedArea[extendedArea.length - 1], '0');
+        return new Area(extendedArea);
     }
 
     private void extendTunnels() {
         for (int y = 2; y < maxY - 1; y += 2) {
             for (int x = 3; x < maxX - 3; x += 2) {
-                if (List.of('-', 'F', 'L', 'S').contains(grid[y][x - 1])
-                        && List.of('-', '7', 'J', 'S').contains(grid[y][x + 1])) {
-                    grid[y][x] = '-';
+                if (List.of('-', 'F', 'L', 'S').contains(valueAt(x - 1, y))
+                        && List.of('-', '7', 'J', 'S').contains(valueAt(x + 1, y))) {
+                    setValueAt(x, y, '-');
                 }
             }
         }
         for (int y = 3; y < maxY - 3; y += 2) {
             for (int x = 2; x < maxX - 1; x += 2) {
-                if (List.of('|', 'F', '7', 'S').contains(grid[y - 1][x])
-                        && List.of('|', 'L', 'J', 'S').contains(grid[y + 1][x])) {
-                    grid[y][x] = '|';
+                if (List.of('|', 'F', '7', 'S').contains(valueAt(x, y - 1))
+                        && List.of('|', 'L', 'J', 'S').contains(valueAt(x, y + 1))) {
+                    setValueAt(x, y, '|');
                 }
             }
         }
@@ -126,9 +126,8 @@ class Grid {
             List<Position> nextCurrentPositions = new ArrayList<>();
             for (Position currentPosition : currentPositions) {
                 for (Position nearbyPosition : currentPosition.nearbyPositions()) {
-                    if (!loop.contains(nearbyPosition)
-                            && grid[nearbyPosition.getY()][nearbyPosition.getX()] != '0') {
-                        grid[nearbyPosition.getY()][nearbyPosition.getX()] = '0';
+                    if (!loop.contains(nearbyPosition) && valueAt(nearbyPosition) != '0') {
+                        setValueAt(nearbyPosition, '0');
                         nextCurrentPositions.add(nearbyPosition);
                     }
                 }
@@ -139,9 +138,9 @@ class Grid {
 
     private int calculateEmptySpaces() {
         int emptyPlaces = 0;
-        for (int y = 2; y < grid.length - 1; y += 2) {
-            for (int x = 2; x < grid[0].length - 1; x += 2) {
-                if (grid[y][x] != '0') {
+        for (int y = 2; y < maxY - 1; y += 2) {
+            for (int x = 2; x < maxX - 1; x += 2) {
+                if (valueAt(x, y) != '0') {
                     emptyPlaces++;
                 }
             }

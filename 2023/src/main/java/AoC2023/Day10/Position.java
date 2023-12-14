@@ -11,10 +11,6 @@ class Position {
     int x;
     int y;
 
-    public boolean isInRange(int maxX, int maxY) {
-        return x >= 0 && x < maxX && y >= 0 && y < maxY;
-    }
-
     public List<Position> nearbyPositions() {
         return Arrays.stream(Direction.values())
                 .map(x -> x.determineNextPosition(this))

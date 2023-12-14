@@ -1,44 +1,29 @@
 package AoC2023.Day13;
 
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.experimental.FieldDefaults;
+import AoC2023.shared.Grid;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@AllArgsConstructor(access = AccessLevel.PRIVATE)
-@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
-class Pattern {
+class Pattern extends Grid {
 
-    char[][] grid;
-    int maxY;
-    int maxX;
+    public Pattern(List<String> inputValue) {
+        super(inputValue);
+    }
 
     public static List<Pattern> createFromInput(List<String> input) {
         List<Pattern> patterns = new ArrayList<>();
         List<String> inputForPattern = new ArrayList<>();
         for (String line : input) {
             if (StringUtils.isEmpty(line)) {
-                patterns.add(Pattern.of(inputForPattern));
+                patterns.add(new Pattern(inputForPattern));
                 inputForPattern.clear();
             } else {
                 inputForPattern.add(line);
             }
         }
         return patterns;
-    }
-
-    private static Pattern of(List<String> inputValue) {
-        assert inputValue.size() > 1;
-        int maxY = inputValue.size();
-        int maxX = inputValue.get(0).length();
-        char[][] grid = new char[maxY][maxX];
-        for (int y = 0; y < maxY; y++) {
-            System.arraycopy(inputValue.get(y).toCharArray(), 0, grid[y], 0, maxX);
-        }
-        return new Pattern(grid, maxY, maxX);
     }
 
     public int calculateCleanMirrorValue() {

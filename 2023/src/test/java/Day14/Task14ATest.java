@@ -15,7 +15,16 @@ public class Task14ATest {
     public void firstTest() {
         // Arrange
         List<String> report = new ArrayList<>();
-        report.add("1000");
+        report.add("O....#....");
+        report.add("O.OO#....#");
+        report.add(".....##...");
+        report.add("OO.#O....O");
+        report.add(".O.....O#.");
+        report.add("O.#..O.#.#");
+        report.add("..O..#O..O");
+        report.add(".......O..");
+        report.add("#....###..");
+        report.add("#OO..#....");
 
         // Act
         List<String> result = mockedTask.perform(report);
@@ -23,6 +32,6 @@ public class Task14ATest {
         // Assert
         Assert.assertNotNull(result);
         Assert.assertEquals(1, result.size());
-        Assert.assertEquals("24000", result.get(0));
+        Assert.assertEquals("136", result.get(0));
     }
 }

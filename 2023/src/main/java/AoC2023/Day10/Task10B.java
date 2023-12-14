@@ -14,6 +14,6 @@ public class Task10B extends AdventTask {
 
     @Override
     public List<String> perform(List<String> input) {
-        return answerAs(Grid.of(input).extendGrid().retrieveNumberOfEmptySpacesInsideLoop());
+        return answerAs(Area.of(input).extendArea().retrieveNumberOfEmptySpacesInsideLoop());
     }
 }

@@ -14,6 +14,6 @@ public class Task10A extends AdventTask {
 
     @Override
     public List<String> perform(List<String> input) {
-        return answerAs(Grid.of(input).calculateLoop().size() / 2);
+        return answerAs(Area.of(input).calculateLoop().size() / 2);
     }
 }
