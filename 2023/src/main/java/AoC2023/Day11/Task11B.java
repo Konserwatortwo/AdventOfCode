@@ -14,6 +14,6 @@ public class Task11B extends AdventTask {
 
     @Override
     public List<String> perform(List<String> input) {
-        return answerAs(Grid.of(input).calculateDistanceBetweenGalaxies(1000000));
+        return answerAs(Space.of(input).calculateDistanceBetweenGalaxies(1000000));
     }
 }

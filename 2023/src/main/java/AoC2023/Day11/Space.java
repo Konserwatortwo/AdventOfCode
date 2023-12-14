@@ -14,13 +14,13 @@ import java.util.stream.IntStream;
 
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
-class Grid {
+class Space {
 
     List<Tuple2<Integer, Integer>> galaxiesPositions;
     boolean[] verticalSpace;
     boolean[] horizontalSpace;
 
-    public static Grid of(List<String> inputValue) {
+    public static Space of(List<String> inputValue) {
         assert inputValue.size() > 1;
         List<Tuple2<Integer, Integer>> galaxiesPositions = new ArrayList<>();
         boolean[] verticalSpace = new boolean[inputValue.get(0).length()];
@@ -40,7 +40,7 @@ class Grid {
                 horizontalSpace[y] = true;
             }
         }
-        return new Grid(galaxiesPositions, verticalSpace, horizontalSpace);
+        return new Space(galaxiesPositions, verticalSpace, horizontalSpace);
     }
 
     public long calculateDistanceBetweenGalaxies(int spaceValue) {

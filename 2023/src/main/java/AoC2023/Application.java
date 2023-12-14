@@ -140,15 +140,18 @@ public class Application {
     public static void main(String[] args) {
         System.out.println(new File(".").getAbsolutePath());
         System.out.println("Witaj w Advent Of Code " + YEAR + " :::");
-
-        long start = System.nanoTime();
         if (performAllTasks) {
-            for (AdventTask allTask : allTasks) {
-                allTask.execute();
+            for (AdventTask task : allTasks) {
+                executeTask(task);
             }
         } else {
-            selectedTask.execute();
+            executeTask(selectedTask);
         }
+    }
+
+    private static void executeTask(AdventTask adventTask) {
+        long start = System.nanoTime();
+        adventTask.execute();
         long end = System.nanoTime() - start;
         System.out.println("Time elapsed: " + (end / 1000000) + " ms");
     }
