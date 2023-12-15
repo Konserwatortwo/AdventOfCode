@@ -1,9 +1,11 @@
 package AoC2023.Day15;
 
 import AoC2023.AdventTask;
-import AoC2023.AdventTaskUtils;
 
 import java.util.List;
+
+import static AoC2023.AdventTaskUtils.answerAs;
+import static AoC2023.AdventTaskUtils.splitOnSeparator;
 
 public class Task15A extends AdventTask {
 
@@ -13,6 +15,9 @@ public class Task15A extends AdventTask {
 
     @Override
     public List<String> perform(List<String> input) {
-        return AdventTaskUtils.answerAs(24000);
+        return answerAs(splitOnSeparator(input.get(0), ",").stream()
+                .map(Sequence::new)
+                .mapToInt(Sequence::getHash)
+                .sum());
     }
 }
