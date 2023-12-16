@@ -1,5 +1,6 @@
 package AoC2023.Day10;
 
+import AoC2023.shared.Position;
 import lombok.AccessLevel;
 import lombok.ToString;
 import lombok.experimental.FieldDefaults;

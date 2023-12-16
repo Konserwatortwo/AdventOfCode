@@ -49,12 +49,25 @@ public class Grid {
         return new Grid(copyGrid, maxX, maxY);
     }
 
+    public char valueAt(Position position) {
+        return valueAt(position.getX(), position.getY());
+    }
+
     public char valueAt(int x, int y) {
         return grid[y][x];
     }
 
+
+    public void setValueAt(Position position, char value) {
+        setValueAt(position.getX(), position.getY(), value);
+    }
+
     public void setValueAt(int x, int y, char value) {
         grid[y][x] = value;
+    }
+
+    public boolean isInGrid(Position position) {
+        return isInGrid(position.getX(), position.getY());
     }
 
     public boolean isInGrid(int x, int y) {

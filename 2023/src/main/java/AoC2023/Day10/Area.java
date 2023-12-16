@@ -1,10 +1,12 @@
 package AoC2023.Day10;
 
 import AoC2023.shared.Grid;
+import AoC2023.shared.Position;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 class Area extends Grid {
 
@@ -24,14 +26,6 @@ class Area extends Grid {
             System.arraycopy(lineArray, 0, createdGrid[y + 1], 1, lineArray.length);
         }
         return new Area(createdGrid);
-    }
-
-    public char valueAt(Position position) {
-        return valueAt(position.getX(), position.getY());
-    }
-
-    public void setValueAt(Position position, char value) {
-        setValueAt(position.getX(), position.getY(), value);
     }
 
     public List<Position> calculateLoop() {
@@ -125,7 +119,7 @@ class Area extends Grid {
         while (!currentPositions.isEmpty()) {
             List<Position> nextCurrentPositions = new ArrayList<>();
             for (Position currentPosition : currentPositions) {
-                for (Position nearbyPosition : currentPosition.nearbyPositions()) {
+                for (Position nearbyPosition : nearbyPositions(currentPosition)) {
                     if (!loop.contains(nearbyPosition) && valueAt(nearbyPosition) != '0') {
                         setValueAt(nearbyPosition, '0');
                         nextCurrentPositions.add(nearbyPosition);
@@ -134,6 +128,12 @@ class Area extends Grid {
             }
             currentPositions = nextCurrentPositions;
         }
+    }
+
+    public List<Position> nearbyPositions(Position position) {
+        return Arrays.stream(Direction.values())
+                .map(x -> x.determineNextPosition(position))
+                .collect(Collectors.toList());
     }
 
     private int calculateEmptySpaces() {
