@@ -25,6 +25,14 @@ public enum Direction {
         return Position.of(nextX.apply(position.getX()), nextY.apply(position.getY()));
     }
 
+    public int nextX(int x) {
+        return nextX.apply(x);
+    }
+
+    public int nextY(int y) {
+        return nextY.apply(y);
+    }
+
     public Direction goRight() {
         return switch (this) {
             case NORTH -> EAST;

@@ -1,5 +1,6 @@
 package AoC2023.Day3;
 
+import AoC2023.shared.Position;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 import org.apache.commons.lang3.StringUtils;
@@ -10,8 +11,8 @@ import java.util.stream.Collectors;
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 class EngineGrid {
 
-    Map<EnginePlace, EngineNumber> placesWithNumbers;
-    Map<EnginePlace, Character> placesWithSymbol;
+    Map<Position, EngineNumber> placesWithNumbers;
+    Map<Position, Character> placesWithSymbol;
 
     public EngineGrid(List<String> input) {
         placesWithNumbers = new HashMap<>();
@@ -28,19 +29,19 @@ class EngineGrid {
                     if (StringUtils.isNotEmpty(currentNumber)) {
                         EngineNumber engineNumber = EngineNumber.of(currentNumber);
                         for (int i = 0; i < currentNumber.length(); i++) {
-                            placesWithNumbers.put(EnginePlace.of(x - i - 1, y), engineNumber);
+                            placesWithNumbers.put(Position.of(x - i - 1, y), engineNumber);
                         }
                         currentNumber = "";
                     }
                     if (currentSign != '.') {
-                        placesWithSymbol.put(EnginePlace.of(x, y), currentSign);
+                        placesWithSymbol.put(Position.of(x, y), currentSign);
                     }
                 }
             }
             if (StringUtils.isNotEmpty(currentNumber)) {
                 EngineNumber engineNumber = EngineNumber.of(currentNumber);
                 for (int i = 0; i < currentNumber.length(); i++) {
-                    placesWithNumbers.put(EnginePlace.of(charArray.length - i - 1, y), engineNumber);
+                    placesWithNumbers.put(Position.of(charArray.length - i - 1, y), engineNumber);
                 }
             }
         }
@@ -48,9 +49,9 @@ class EngineGrid {
 
     public int sumOfAllNumbersNearSymbol() {
         Set<EngineNumber> engineNumbers = new HashSet<>();
-        for (EnginePlace placeWithSymbol : placesWithSymbol.keySet()) {
+        for (Position placeWithSymbol : placesWithSymbol.keySet()) {
             engineNumbers.addAll(
-                    placeWithSymbol.nearbyPlaces().stream()
+                    placeWithSymbol.nearbyPositionsExtended().stream()
                             .filter(placesWithNumbers::containsKey)
                             .map(placesWithNumbers::get)
                             .collect(Collectors.toSet())
@@ -63,9 +64,9 @@ class EngineGrid {
 
     public int sumOfAllNumbersNearGear() {
         int sum = 0;
-        for (EnginePlace enginePlace : placesWithSymbol.keySet()) {
+        for (Position enginePlace : placesWithSymbol.keySet()) {
             if (placesWithSymbol.get(enginePlace) == '*') {
-                Set<EngineNumber> engineNumbers = enginePlace.nearbyPlaces().stream()
+                Set<EngineNumber> engineNumbers = enginePlace.nearbyPositionsExtended().stream()
                         .filter(placesWithNumbers::containsKey)
                         .map(placesWithNumbers::get)
                         .collect(Collectors.toSet());
@@ -78,5 +79,4 @@ class EngineGrid {
         }
         return sum;
     }
-
 }
