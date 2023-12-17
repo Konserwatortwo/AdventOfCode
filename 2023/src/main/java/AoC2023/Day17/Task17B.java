@@ -1,9 +1,10 @@
 package AoC2023.Day17;
 
 import AoC2023.AdventTask;
-import AoC2023.AdventTaskUtils;
 
 import java.util.List;
+
+import static AoC2023.AdventTaskUtils.answerAs;
 
 public class Task17B extends AdventTask {
 
@@ -13,6 +14,6 @@ public class Task17B extends AdventTask {
 
     @Override
     public List<String> perform(List<String> input) {
-        return AdventTaskUtils.answerAs(24000);
+        return answerAs(City.of(input).findBestSolution(9, 3));
     }
 }
