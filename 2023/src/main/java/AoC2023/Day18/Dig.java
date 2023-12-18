@@ -1,5 +1,6 @@
 package AoC2023.Day18;
 
+import AoC2023.Day18.Range.PointPosition;
 import AoC2023.shared.Position;
 import io.vavr.Tuple;
 import io.vavr.Tuple2;
@@ -12,38 +13,38 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static AoC2023.Day18.RangeY.PointPosition.*;
+import static AoC2023.Day18.Range.PointPosition.*;
 
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 class Dig {
 
-    List<RangeX> rangesX;
-    List<RangeY> rangesY;
+    List<Range> rangesX;
+    List<Range> rangesY;
 
     public static Dig of(List<Instruction> instructions) {
-        List<RangeX> rangesX = new ArrayList<>();
-        List<RangeY> rangesY = new ArrayList<>();
+        List<Range> rangesX = new ArrayList<>();
+        List<Range> rangesY = new ArrayList<>();
         Position currentPosition = Position.of(0, 0);
         for (Instruction instruction : instructions) {
             int change = instruction.getLength();
             switch (instruction.getDirection()) {
                 case NORTH -> {
                     change *= -1;
-                    rangesY.add(RangeY.of(currentPosition, -instruction.getLength()));
+                    rangesY.add(Range.ofY(currentPosition, -instruction.getLength()));
                     currentPosition = movePosition(currentPosition, 0, change);
                 }
                 case EAST -> {
-                    rangesX.add(RangeX.of(currentPosition, instruction.getLength()));
+                    rangesX.add(Range.ofX(currentPosition, instruction.getLength()));
                     currentPosition = movePosition(currentPosition, change, 0);
                 }
                 case SOUTH -> {
-                    rangesY.add(RangeY.of(currentPosition, instruction.getLength()));
+                    rangesY.add(Range.ofY(currentPosition, instruction.getLength()));
                     currentPosition = movePosition(currentPosition, 0, change);
                 }
                 case WEST -> {
                     change *= -1;
-                    rangesX.add(RangeX.of(currentPosition, -instruction.getLength()));
+                    rangesX.add(Range.ofX(currentPosition, -instruction.getLength()));
                     currentPosition = movePosition(currentPosition, change, 0);
                 }
             }
@@ -58,15 +59,13 @@ class Dig {
     }
 
     public long calculateDig() {
-        long sum = 0;
         List<Integer> importantRows = rangesX.stream()
                 .map(Range::getConstant)
                 .distinct()
                 .sorted()
                 .collect(Collectors.toList());
-        assert importantRows.size() > 1;
         long previousRow = sumForRow(importantRows.get(0));
-        sum += previousRow;
+        long sum = previousRow;
         for (int i = 1; i < importantRows.size() - 1; i++) {
             sum += (importantRows.get(i) - importantRows.get(i - 1) - 1) * previousRow;
             sum += sumForRow(importantRows.get(i));
@@ -77,7 +76,7 @@ class Dig {
     }
 
     private long sumForRow(int rowNumber) {
-        List<Tuple2<Integer, RangeY.PointPosition>> valuesForRange = rangesY.stream()
+        List<Tuple2<Integer, PointPosition>> valuesForRange = rangesY.stream()
                 .map(rangeY -> Tuple.of(rangeY.getConstant(), rangeY.pointPosition(rowNumber)))
                 .filter(tuple -> tuple._2 != OUTSIDE)
                 .collect(Collectors.toList());
@@ -85,8 +84,8 @@ class Dig {
         boolean isGlobalTake = valuesForRange.get(0)._2 == INSIDE;
         boolean isLocalTake = false;
         for (int i = 1; i < valuesForRange.size(); i++) {
-            Tuple2<Integer, RangeY.PointPosition> from = valuesForRange.get(i - 1);
-            Tuple2<Integer, RangeY.PointPosition> to = valuesForRange.get(i);
+            Tuple2<Integer, PointPosition> from = valuesForRange.get(i - 1);
+            Tuple2<Integer, PointPosition> to = valuesForRange.get(i);
             if (from._2 != INSIDE) {
                 isLocalTake = !isLocalTake;
             }
