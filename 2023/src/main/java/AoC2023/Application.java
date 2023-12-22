@@ -58,7 +58,7 @@ public class Application {
 
     public static final String YEAR = "2023";
     private static final boolean performAllTasks = false;
-    private static final AdventTask selectedTask = new Task20A();
+    private static final AdventTask selectedTask = new Task21B();
     private static final List<AdventTask> allTasks = new ArrayList<>();
 
     static {
