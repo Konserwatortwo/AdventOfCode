@@ -16,7 +16,13 @@ public class Task22ATest {
     public void firstTest() {
         // Arrange
         List<String> report = new ArrayList<>();
-        report.add("1000");
+        report.add("1,0,1~1,2,1");
+        report.add("0,0,2~2,0,2");
+        report.add("0,2,3~2,2,3");
+        report.add("0,0,4~0,2,4");
+        report.add("2,0,5~2,2,5");
+        report.add("0,1,6~2,1,6");
+        report.add("1,1,8~1,1,9");
 
         // Act
         List<String> result = mockedTask.perform(report);
@@ -24,6 +30,6 @@ public class Task22ATest {
         // Assert
         Assert.assertNotNull(result);
         Assert.assertEquals(1, result.size());
-        Assert.assertEquals("24000", result.get(0));
+        Assert.assertEquals("5", result.get(0));
     }
 }

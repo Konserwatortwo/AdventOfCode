@@ -18,7 +18,7 @@
       <module name="AoC_2020" target="15" />
       <module name="AoC_2021" target="15" />
       <module name="AoC_2022" target="15" />
-      <module name="AoC_2023" target="15" />
+      <module name="AoC_2023" target="17" />
     </bytecodeTargetLevel>
   </component>
 </project>
