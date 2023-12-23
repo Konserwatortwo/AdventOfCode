@@ -38,7 +38,7 @@ public class Task21BTest {
         Assert.assertEquals("470149643712804", result.get(0));
     }
 
-    //    @Test
+    @Test
     public void secondTest() {
         // Arrange
         List<String> report = new ArrayList<>();
@@ -62,7 +62,7 @@ public class Task21BTest {
         Assert.assertEquals(16, result);
     }
 
-    //    @Test
+    @Test
     public void thirdTest() {
         // Arrange
         List<String> report = new ArrayList<>();
@@ -86,7 +86,7 @@ public class Task21BTest {
         Assert.assertEquals(50, result);
     }
 
-    //    @Test
+    @Test
     public void fourthTest() {
         // Arrange
         List<String> report = new ArrayList<>();
