@@ -16,7 +16,29 @@ public class Task23BTest {
     public void firstTest() {
         // Arrange
         List<String> report = new ArrayList<>();
-        report.add("1000");
+        report.add("#.#####################");
+        report.add("#.......#########...###");
+        report.add("#######.#########.#.###");
+        report.add("###.....#.>.>.###.#.###");
+        report.add("###v#####.#v#.###.#.###");
+        report.add("###.>...#.#.#.....#...#");
+        report.add("###v###.#.#.#########.#");
+        report.add("###...#.#.#.......#...#");
+        report.add("#####.#.#.#######.#.###");
+        report.add("#.....#.#.#.......#...#");
+        report.add("#.#####.#.#.#########v#");
+        report.add("#.#...#...#...###...>.#");
+        report.add("#.#.#v#######v###.###v#");
+        report.add("#...#.>.#...>.>.#.###.#");
+        report.add("#####v#.#.###v#.#.###.#");
+        report.add("#.....#...#...#.#.#...#");
+        report.add("#.#########.###.#.#.###");
+        report.add("#...###...#...#...#.###");
+        report.add("###.###.#.###v#####v###");
+        report.add("#...#...#.#.>.>.#.>.###");
+        report.add("#.###.###.#.###.#.#v###");
+        report.add("#.....###...###...#...#");
+        report.add("#####################.#");
 
         // Act
         List<String> result = mockedTask.perform(report);
