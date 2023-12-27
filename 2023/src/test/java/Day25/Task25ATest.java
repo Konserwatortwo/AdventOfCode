@@ -16,7 +16,19 @@ public class Task25ATest {
     public void firstTest() {
         // Arrange
         List<String> report = new ArrayList<>();
-        report.add("1000");
+        report.add("jqt: rhn xhk nvd");
+        report.add("rsh: frs pzl lsr");
+        report.add("xhk: hfx");
+        report.add("cmg: qnr nvd lhk bvb");
+        report.add("rhn: xhk bvb hfx");
+        report.add("bvb: xhk hfx");
+        report.add("pzl: lsr hfx nvd");
+        report.add("qnr: nvd");
+        report.add("ntq: jqt hfx bvb xhk");
+        report.add("nvd: lhk");
+        report.add("lsr: lhk");
+        report.add("rzs: qnr cmg lsr rsh");
+        report.add("frs: qnr lhk lsr");
 
         // Act
         List<String> result = mockedTask.perform(report);
@@ -24,6 +36,6 @@ public class Task25ATest {
         // Assert
         Assert.assertNotNull(result);
         Assert.assertEquals(1, result.size());
-        Assert.assertEquals("24000", result.get(0));
+        Assert.assertEquals("54", result.get(0));
     }
 }

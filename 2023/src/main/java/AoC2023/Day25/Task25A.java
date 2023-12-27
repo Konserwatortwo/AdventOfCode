@@ -13,6 +13,6 @@ public class Task25A extends AdventTask {
 
     @Override
     public List<String> perform(List<String> input) {
-        return AdventTaskUtils.answerAs(24000);
+        return AdventTaskUtils.answerAs(Machine.of(input).findThreeSeparators());
     }
 }
