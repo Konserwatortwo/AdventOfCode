@@ -1,9 +1,10 @@
 package AoC2023.Day23;
 
 import AoC2023.AdventTask;
-import AoC2023.AdventTaskUtils;
 
 import java.util.List;
+
+import static AoC2023.AdventTaskUtils.answerAs;
 
 public class Task23A extends AdventTask {
 
@@ -13,6 +14,6 @@ public class Task23A extends AdventTask {
 
     @Override
     public List<String> perform(List<String> input) {
-        return AdventTaskUtils.answerAs(Forest.of(input).findLongestRoute());
+        return answerAs(Forest.of(input).findLongestDirectionalRoute());
     }
 }
