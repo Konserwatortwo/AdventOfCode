@@ -142,9 +142,11 @@ public class Application {
         System.out.println(new File(".").getAbsolutePath());
         System.out.println("Witaj w Advent Of Code " + YEAR + " :::");
         if (performAllTasks) {
+            long allTaskStart = System.nanoTime();
             for (AdventTask task : allTasks) {
                 executeTask(task);
             }
+            System.out.println("Time for all task: " + ((System.nanoTime() - allTaskStart) / 1000000) + " ms");
         } else {
             executeTask(selectedTask);
         }
