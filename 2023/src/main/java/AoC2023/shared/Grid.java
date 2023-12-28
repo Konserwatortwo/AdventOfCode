@@ -133,7 +133,7 @@ public class Grid {
 
     @Override
     public String toString() {
-        StringBuilder builder = new StringBuilder("");
+        StringBuilder builder = new StringBuilder();
         for (int y = 0; y < maxY; y++) {
             for (int x = 0; x < maxX; x++) {
                 builder.append(valueAt(x, y));

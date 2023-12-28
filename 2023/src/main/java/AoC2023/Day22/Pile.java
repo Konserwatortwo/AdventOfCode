@@ -1,5 +1,6 @@
 package AoC2023.Day22;
 
+import AoC2023.shared.Coordinates;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -65,8 +66,7 @@ class Pile {
             Set<Brick> onItWithoutOtherSupport = new HashSet<>();
             allAbove.remove(brick);
             onItWithoutOtherSupport.add(brick);
-            Map<Integer, List<Brick>> groupOnLevel = allAbove.stream()
-                    .collect(Collectors.groupingBy(Brick::getLowestPoint));
+            Map<Integer, List<Brick>> groupOnLevel = allAbove.stream().collect(Collectors.groupingBy(Brick::getLowestPoint));
             List<Integer> levels = new ArrayList<>(groupOnLevel.keySet());
             Collections.sort(levels);
             for (Integer level : levels) {

@@ -46,6 +46,6 @@ public class Task23BTest {
         // Assert
         Assert.assertNotNull(result);
         Assert.assertEquals(1, result.size());
-        Assert.assertEquals("24000", result.get(0));
+        Assert.assertEquals("154", result.get(0));
     }
 }

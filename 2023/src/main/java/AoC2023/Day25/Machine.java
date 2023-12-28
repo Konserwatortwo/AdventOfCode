@@ -44,9 +44,7 @@ class Machine {
                 .map(Map.Entry::getKey)
                 .skip(connectionCounter.size() - 4)
                 .forEach(edges::remove);
-
         int size = findConnectionsFromNode();
-        System.out.println(size * (nodes.size() - size));
         return size * (nodes.size() - size);
     }
 

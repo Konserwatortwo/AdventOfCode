@@ -1,6 +1,7 @@
 package Day24;
 
 import AoC2023.AdventTask;
+import AoC2023.Day24.CheckingGround;
 import AoC2023.Day24.Task24B;
 import org.junit.Assert;
 import org.junit.Test;
@@ -16,14 +17,16 @@ public class Task24BTest {
     public void firstTest() {
         // Arrange
         List<String> report = new ArrayList<>();
-        report.add("1000");
+        report.add("19, 13, 30 @ -2,  1, -2");
+        report.add("18, 19, 22 @ -1, -1, -2");
+        report.add("20, 25, 34 @ -2, -2, -4");
+        report.add("12, 31, 28 @ -1, -2, -1");
+        report.add("20, 19, 15 @  1, -5, -3");
 
         // Act
-        List<String> result = mockedTask.perform(report);
+        long result = CheckingGround.of(report).calculateThrow();
 
         // Assert
-        Assert.assertNotNull(result);
-        Assert.assertEquals(1, result.size());
-        Assert.assertEquals("24000", result.get(0));
+        Assert.assertEquals(47, result);
     }
 }

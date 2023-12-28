@@ -1,6 +1,7 @@
 package AoC2023.Day22;
 
 import AoC2023.AdventTaskUtils;
+import AoC2023.shared.Coordinates;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.experimental.FieldDefaults;
@@ -45,7 +46,8 @@ class Brick {
 
     public int getLowestPoint() {
         return coordinates.stream()
-                .mapToInt(Coordinates::getZ)
+                .mapToLong(Coordinates::getZ)
+                .mapToInt(x -> (int) x)
                 .min()
                 .orElseThrow();
     }
@@ -71,7 +73,7 @@ class Brick {
     public boolean isSafeToDestroy() {
         return onIt.isEmpty() || onIt.stream().allMatch(onIt -> onIt.getBelowIt().size() > 1);
     }
-    
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
