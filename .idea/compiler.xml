@@ -10,18 +10,14 @@
         <outputRelativeToContentRoot value="true" />
         <module name="AoC_2020" />
         <module name="AoC_2021" />
+        <module name="AoC_2024" />
         <module name="AoC_2022" />
         <module name="AoC_2019" />
         <module name="AoC_2023" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="AoC_2019" target="15" />
       <module name="AOC_2019" target="1.8" />
-      <module name="AoC_2020" target="15" />
-      <module name="AoC_2021" target="15" />
-      <module name="AoC_2022" target="15" />
-      <module name="AoC_2023" target="17" />
     </bytecodeTargetLevel>
   </component>
 </project>
